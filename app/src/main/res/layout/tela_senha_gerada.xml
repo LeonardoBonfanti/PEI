@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/logoAlpha"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:background="@drawable/logo_sem_texto"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/txtBemVindo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BEM VINDO"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:layout_marginTop="220dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/txtBemVindo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtInfoPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="SUA SENHA É"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/txtUserName"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtUserPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/txtInfoPass"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnOkCadastro"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:background="@drawable/btnok"
+        android:layout_below="@+id/txtUserPass"
+        android:layout_marginRight="38dp"
+        android:layout_marginEnd="38dp" />
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myRelativeFour"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <Button
+        android:id="@+id/imgTesteAudio4"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/imgaudio"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editTextRespostaFour"
+        android:inputType="textNoSuggestions|textCapCharacters"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="RESPOSTA"
+        android:textColorHint="#FFFFFF"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/imgTesteAudio4"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnOkTesteFour"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:background="@drawable/btnok"
+        android:layout_below="@id/editTextRespostaFour"
+        android:layout_toRightOf="@+id/btnMiddle4"/>
+
+    <Button
+        android:id="@+id/btnMiddle4"
+        android:layout_width="50px"
+        android:layout_height="200px"
+        android:alpha="0"
+        android:background="@drawable/btnok"
+        android:layout_below="@+id/editTextRespostaFour"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/btnCancelTesteFour"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:background="@drawable/btncancel"
+        android:layout_below="@id/editTextRespostaFour"
+        android:layout_toLeftOf="@+id/btnMiddle4"/>
+
+</RelativeLayout>

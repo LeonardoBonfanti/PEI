@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myRelativeThree"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <EditText
+        android:id="@+id/editTextRespostaThree"
+        android:inputType="textNoSuggestions|textCapCharacters"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="RESPOSTA"
+        android:textColorHint="#FFFFFF"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/imageTestThree"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageTestThree"
+        android:background="@drawable/imgtest3"
+        android:layout_width="600px"
+        android:layout_height="400px"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnOkThree"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:background="@drawable/btnok"
+        android:layout_below="@+id/editTextRespostaThree"
+        android:layout_toRightOf="@+id/btnMiddle3"/>
+
+    <Button
+        android:id="@+id/btnMiddle3"
+        android:layout_width="50px"
+        android:layout_height="200px"
+        android:alpha="0"
+        android:background="@drawable/btnok"
+        android:layout_below="@+id/editTextRespostaThree"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/btnCancelThree"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:background="@drawable/btncancel"
+        android:layout_below="@+id/editTextRespostaThree"
+        android:layout_toLeftOf="@+id/btnMiddle3"/>
+
+</RelativeLayout>

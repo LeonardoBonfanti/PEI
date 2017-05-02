@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "887246822936",
+    "firebase_url": "https://peiapplication.firebaseio.com",
+    "project_id": "peiapplication",
+    "storage_bucket": "peiapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887246822936:android:96f0b7d93e9868e2",
+        "android_client_info": {
+          "package_name": "com.bonfanti.leonardo.pei"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887246822936-pp4o1bb0n9nvg7ipjikgdmc6il2i9hl6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bonfanti.leonardo.pei",
+            "certificate_hash": "3f6160c674b5403582ada6decd385af2b066858c"
+          }
+        },
+        {
+          "client_id": "887246822936-icanedbeio8dk3gcv95tat11hudtssi8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTGjsXyGkpOhS8J9JAjno4fk5XIEQQinY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887246822936-icanedbeio8dk3gcv95tat11hudtssi8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

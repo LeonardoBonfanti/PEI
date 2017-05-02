@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar_testes"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#498467"
+        android:elevation="4dp">
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:id="@+id/cardTestOne"
+        card_view:cardBackgroundColor="#5E3EB3"
+        card_view:cardCornerRadius="30dp"
+        card_view:cardElevation="10dp"
+        android:foreground="?selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txtTextOne"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="1"
+            android:textColor="#FFFFFF"
+            android:textSize="200sp"
+            android:textAlignment="center">
+
+        </TextView>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:id="@+id/cardTestTwo"
+        card_view:cardBackgroundColor="#EEE98E"
+        card_view:cardCornerRadius="30dp"
+        card_view:cardElevation="10dp"
+        android:foreground="?selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txtTextTwo"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="2"
+            android:textColor="#FFFFFF"
+            android:textSize="200sp"
+            android:textAlignment="center">
+
+        </TextView>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:id="@+id/cardTestThree"
+        card_view:cardBackgroundColor="#13CE66"
+        card_view:cardCornerRadius="30dp"
+        card_view:cardElevation="10dp"
+        android:foreground="?selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/txtTextThree"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="3"
+            android:textColor="#FFFFFF"
+            android:textSize="200sp"
+            android:textAlignment="center">
+
+        </TextView>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:id="@+id/cardTestFour"
+        card_view:cardBackgroundColor="#B43A3A"
+        card_view:cardCornerRadius="30dp"
+        card_view:cardElevation="10dp"
+        android:foreground="?selectableItemBackground"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/cardTestOne"
+        android:layout_toEndOf="@+id/cardTestOne"
+        android:layout_marginLeft="278dp"
+        android:layout_marginStart="278dp">
+
+        <TextView
+            android:id="@+id/txtTextFour"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="4"
+            android:textColor="#FFFFFF"
+            android:textSize="200sp"
+            android:textAlignment="center">
+
+        </TextView>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

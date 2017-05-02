@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myRelativeCadastro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/imageLogoCadastro"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:background="@drawable/logo_c_texto"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editTextNome"
+        android:inputType="textNoSuggestions|textCapCharacters"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="NOME"
+        android:textColorHint="#FFFFFF"
+        android:layout_below="@+id/imageLogoCadastro"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnCadastroOk"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Ok"
+        android:textSize="20sp"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/editTextNome"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

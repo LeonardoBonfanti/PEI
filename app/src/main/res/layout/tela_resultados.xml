@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar_result"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#498467"
+        android:elevation="4dp">
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.bonfanti.leonardo.pei.Utils.SortableCarTableView
+        android:id="@+id/tableView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        custom:tableView_columnCount="4"
+        custom:tableView_headerColor="#2ecc71"
+        custom:tableView_headerElevation="10"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+
+    </com.bonfanti.leonardo.pei.Utils.SortableCarTableView>
+
+</LinearLayout>
