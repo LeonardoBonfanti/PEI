@@ -147,13 +147,13 @@ public class AppOptions extends AppCompatActivity
         }
     }
 
-    public static void saveData(String result, String sala, String key, DatabaseReference data)
+    public static void saveData(String result, String sala, String key, String teste, DatabaseReference data)
     {
         DatabaseReference current_user = data.child(key);
 
         String date = getDateFormated();
 
-        current_user.child("Sala").child(sala).child("Data").child(date).child("Teste").child("1").setValue(result);
+        current_user.child("Sala").child(sala).child("Data").child(date).child("Teste").child(teste).setValue(result);
     }
 
     private static String getDateFormated()

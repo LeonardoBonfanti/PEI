@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.View;
@@ -14,6 +15,9 @@ import android.widget.RelativeLayout;
 
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
+import com.bonfanti.leonardo.pei.Utils.FireApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +38,17 @@ public class TesteTwo extends AppCompatActivity implements View.OnClickListener
     boolean validado;
     RelativeLayout relativeLayout;
 
+    DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teste_two);
 
-        getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
         AppOptions.UiChangeListener(getWindow().getDecorView());
 
         myImage = (Button)findViewById(R.id.imgTesteAudio);
@@ -166,6 +173,7 @@ public class TesteTwo extends AppCompatActivity implements View.OnClickListener
     void verificaNivel()
     {
         int total = 0;
+        String result;
 
         for (int i = 0; i < resultadoConjunto.size(); i++)
             total += resultadoConjunto.get(i);
@@ -175,13 +183,21 @@ public class TesteTwo extends AppCompatActivity implements View.OnClickListener
         Intent intent = new Intent(this, TelaResultadoTemp.class);
 
         if(total <= 1)
-            intent.putExtra("EXTRA_SESSION_ID", "Alfabética");
+            result = "Alfabética";
         else if(total > 1 & total <= 3)
-            intent.putExtra("EXTRA_SESSION_ID", "Silábico-Alfabética");
+            result = "Silábico-Alfabética";
         else if(total == 4)
-            intent.putExtra("EXTRA_SESSION_ID", "Silábica");
+            result = "Silábica";
         else
-            intent.putExtra("EXTRA_SESSION_ID", "Pré-Silábica");
+            result = "Pré-Silábica";
+
+        intent.putExtra("EXTRA_SESSION_ID", result);
+
+        final FireApp fireApp= (FireApp) getApplicationContext();
+        String key = fireApp.getUserKey();
+        String sala = fireApp.getUserSala();
+
+        AppOptions.saveData(result, sala, key, "DOIS", databaseReference);
 
         validado = true;
         startActivity(intent);

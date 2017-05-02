@@ -39,8 +39,6 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
     boolean validado;
 
     RelativeLayout relativeLayout;
-
-    FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
 
     @Override
@@ -49,7 +47,6 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teste_one);
 
-        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
@@ -205,7 +202,7 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         String key = fireApp.getUserKey();
         String sala = fireApp.getUserSala();
 
-        AppOptions.saveData(result, sala, key, databaseReference);
+        AppOptions.saveData(result, sala, key, "UM", databaseReference);
 
         validado = true;
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bonfanti.leonardo.pei.Utils.Car;
+import com.bonfanti.leonardo.pei.Utils.UserDetails;
 
 import java.util.List;
 
@@ -20,34 +20,37 @@ import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
  * Created by Usuário on 4/26/2017.
  */
 
-public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<Car> {
+public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<UserDetails> {
 
     private static final int TEXT_SIZE = 14;
 
 
-    public CarTableDataAdapter(final Context context, final List<Car> data, final TableView<Car> tableView) {
+    public CarTableDataAdapter(final Context context, final List<UserDetails> data, final TableView<UserDetails> tableView) {
         super(context, data, tableView);
     }
 
     @Override
     public View getDefaultCellView(int rowIndex, int columnIndex, ViewGroup parentView)
     {
-        final Car car = getRowData(rowIndex);
+        final UserDetails userDetails = getRowData(rowIndex);
         View renderedView = null;
 
         switch (columnIndex)
         {
             case 0:
-                renderedView = renderCatName(car);
+                renderedView = renderCatName(userDetails);
                 break;
             case 1:
-                renderedView = renderCatProf(car);
+                renderedView = renderCatProf(userDetails);
                 break;
             case 2:
-                renderedView = renderCatTest(car);
+                renderedView = renderCatTest(userDetails);
                 break;
             case 3:
-                renderedView = renderCatResult(car);
+                renderedView = renderCatData(userDetails);
+                break;
+            case 4:
+                renderedView = renderCatResult(userDetails);
                 break;
         }
 
@@ -56,12 +59,12 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<Car> {
 
     @Override
     public View getLongPressCellView(int rowIndex, int columnIndex, ViewGroup parentView) {
-        final Car car = getRowData(rowIndex);
+        final UserDetails userDetails = getRowData(rowIndex);
         View renderedView = null;
 
         switch (columnIndex) {
             case 1:
-                renderedView = renderEditableCatName(car);
+                renderedView = renderEditableCatName(userDetails);
                 break;
             default:
                 renderedView = getDefaultCellView(rowIndex, columnIndex, parentView);
@@ -70,31 +73,35 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<Car> {
         return renderedView;
     }
 
-    private View renderEditableCatName(final Car car)
+    private View renderEditableCatName(final UserDetails userDetails)
     {
         final EditText editText = new EditText(getContext());
-        editText.setText(car.getName());
+        editText.setText(userDetails.getName());
         editText.setPadding(20, 10, 20, 10);
         editText.setTextSize(TEXT_SIZE);
         editText.setSingleLine();
-        editText.addTextChangedListener(new CarNameUpdater(car));
+        editText.addTextChangedListener(new CarNameUpdater(userDetails));
         return editText;
     }
 
-    private View renderCatName(final Car car) {
-        return renderString(car.getName());
+    private View renderCatName(final UserDetails userDetails) {
+        return renderString(userDetails.getName());
     }
 
-    private View renderCatProf(final Car car) {
-        return renderString(car.getProf());
+    private View renderCatProf(final UserDetails userDetails) {
+        return renderString(userDetails.getProf());
     }
 
-    private View renderCatTest(final Car car) {
-        return renderString(String.valueOf(car.getTest()));
+    private View renderCatTest(final UserDetails userDetails) {
+        return renderString(userDetails.getTest());
     }
 
-    private View renderCatResult(final Car car) {
-        return renderString(car.getResult());
+    private View renderCatData(final UserDetails userDetails) {
+        return renderString(userDetails.getData());
+    }
+
+    private View renderCatResult(final UserDetails userDetails) {
+        return renderString(userDetails.getResult());
     }
 
     private View renderString(final String value)
@@ -109,10 +116,10 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<Car> {
 
     private static class CarNameUpdater implements TextWatcher {
 
-        private Car carToUpdate;
+        private UserDetails userDetailsToUpdate;
 
-        public CarNameUpdater(Car carToUpdate) {
-            this.carToUpdate = carToUpdate;
+        public CarNameUpdater(UserDetails userDetailsToUpdate) {
+            this.userDetailsToUpdate = userDetailsToUpdate;
         }
 
         @Override
@@ -127,7 +134,7 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<Car> {
 
         @Override
         public void afterTextChanged(Editable s) {
-            carToUpdate.setName(s.toString());
+            userDetailsToUpdate.setName(s.toString());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.bonfanti.leonardo.pei.Activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -27,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 
 public class TelaSalas extends AppCompatActivity
 {
+    int controler;
     Toolbar myToolbar;
     ArrayList<String> names;
     GridSalasAdapter gridViewArrayAdapter;
     GridView gridView;
+    ProgressDialog progressDialog;
 
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
@@ -64,7 +68,9 @@ public class TelaSalas extends AppCompatActivity
 
         AppOptions.setOverflowButtonColor(myToolbar, Color.WHITE);
 
+        controler = 1;
         names = new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
 
         gridView = (GridView) findViewById(R.id.myGrid);
 
@@ -111,12 +117,15 @@ public class TelaSalas extends AppCompatActivity
     /* Adiciona a descrição no devido array e atualiza a GridView com o novo adapter */
     private void retrieveDatabase()
     {
+        progressDialog.setMessage("CRIANDO SALAS...");
+        progressDialog.show();
+
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            {
                 String key = dataSnapshot.getKey();
                 names.add(key);
-                geraSalas();
             }
 
             @Override
@@ -135,6 +144,20 @@ public class TelaSalas extends AppCompatActivity
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                geraSalas();
+                progressDialog.dismiss();
             }
 
             @Override

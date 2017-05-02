@@ -14,6 +14,9 @@ import android.widget.RelativeLayout;
 
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
+import com.bonfanti.leonardo.pei.Utils.FireApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -30,11 +33,15 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
     String resposta;
     RelativeLayout relativeLayout;
 
+    DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teste_three);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
         AppOptions.UiChangeListener(getWindow().getDecorView());
@@ -113,18 +120,27 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
 
     void verificaNivel()
     {
-        int result = possibilities();
+        int total = possibilities();
+        String result;
 
         Intent intent = new Intent(this, TelaResultadoTemp.class);
 
-        if(result <= 1)
-            intent.putExtra("EXTRA_SESSION_ID", "Alfabética");
-        else if(result > 1 & result <= 3)
-            intent.putExtra("EXTRA_SESSION_ID", "Silábico-Alfabética");
-        else if(result == 4)
-            intent.putExtra("EXTRA_SESSION_ID", "Silábica");
+        if(total <= 1)
+            result = "Alfabética";
+        else if(total > 1 & total <= 3)
+            result = "Silábico-Alfabética";
+        else if(total == 4)
+            result = "Silábica";
         else
-            intent.putExtra("EXTRA_SESSION_ID", "Pré-Silábica");
+            result = "Pré-Silábica";
+
+        intent.putExtra("EXTRA_SESSION_ID", result);
+
+        final FireApp fireApp= (FireApp) getApplicationContext();
+        String key = fireApp.getUserKey();
+        String sala = fireApp.getUserSala();
+
+        AppOptions.saveData(result, sala, key, "TRÊS", databaseReference);
 
         startActivity(intent);
     }

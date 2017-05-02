@@ -11,7 +11,7 @@ import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
  * Created by Usuário on 4/26/2017.
  */
 
-public class SortableCarTableView extends SortableTableView<Car> {
+public class SortableCarTableView extends SortableTableView<UserDetails> {
 
     public SortableCarTableView(final Context context) {
         this(context, null);
@@ -24,19 +24,21 @@ public class SortableCarTableView extends SortableTableView<Car> {
     public SortableCarTableView(final Context context, final AttributeSet attributes, final int styleAttributes) {
         super(context, attributes, styleAttributes);
 
-        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "NOME", "PROFESSOR(A)", "TESTE", "RESULTADO");
+        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "NOME", "PROFESSOR(A)", "TESTE", "DATA", "RESULTADO");
         setHeaderAdapter(simpleTableHeaderAdapter);
 
-        final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(4);
+        final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(5);
         tableColumnWeightModel.setColumnWeight(0, 2);
         tableColumnWeightModel.setColumnWeight(1, 3);
         tableColumnWeightModel.setColumnWeight(2, 3);
         tableColumnWeightModel.setColumnWeight(3, 2);
+        tableColumnWeightModel.setColumnWeight(4, 2);
         setColumnModel(tableColumnWeightModel);
 
         setColumnComparator(0, CarComparators.getCarNameComparator());
         setColumnComparator(1, CarComparators.getCarProfComparator());
         setColumnComparator(2, CarComparators.getCarTestComparator());
-        setColumnComparator(3, CarComparators.getCarResultComparator());
+        setColumnComparator(3, CarComparators.getCarDataComparator());
+        setColumnComparator(4, CarComparators.getCarResultComparator());
     }
 }

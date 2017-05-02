@@ -14,6 +14,9 @@ import android.widget.RelativeLayout;
 
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
+import com.bonfanti.leonardo.pei.Utils.FireApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Usuário on 4/10/2017.
@@ -28,14 +31,17 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
     String resposta;
     RelativeLayout relativeLayout;
 
+    DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teste_four);
 
-        getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
         AppOptions.UiChangeListener(getWindow().getDecorView());
 
         myImage = (Button)findViewById(R.id.imgTesteAudio4);
@@ -91,18 +97,28 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
 
     void verificaNivel()
     {
-        int result = AppOptions.computeLevenshteinDistance(resposta, "O MENINO DESENHA NO CADERNO");
+        int teste = AppOptions.computeLevenshteinDistance(resposta, "O MENINO DESENHA NO CADERNO");
+        String result;
 
         Intent intent = new Intent(this, TelaResultadoTemp.class);
 
-        if(result <= 1)
-            intent.putExtra("EXTRA_SESSION_ID", "Alfabética");
-        else if(result > 1 & result <= 3)
-            intent.putExtra("EXTRA_SESSION_ID", "Silábico-Alfabética");
-        else if(result == 4)
-            intent.putExtra("EXTRA_SESSION_ID", "Silábica");
+
+        if(teste <= 1)
+            result = "Alfabética";
+        else if(teste > 1 & teste <= 3)
+            result = "Silábico-Alfabética";
+        else if(teste == 4)
+            result = "Silábica";
         else
-            intent.putExtra("EXTRA_SESSION_ID", "Pré-Silábica");
+            result = "Pré-Silábica";
+
+        intent.putExtra("EXTRA_SESSION_ID", result);
+
+        final FireApp fireApp= (FireApp) getApplicationContext();
+        String key = fireApp.getUserKey();
+        String sala = fireApp.getUserSala();
+
+        AppOptions.saveData(result, sala, key, "QUATRO", databaseReference);
 
         startActivity(intent);
     }

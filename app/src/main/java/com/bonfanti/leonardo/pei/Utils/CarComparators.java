@@ -12,53 +12,57 @@ public final class CarComparators {
         //no instance
     }
 
-    public static Comparator<Car> getCarNameComparator() {
+    public static Comparator<UserDetails> getCarNameComparator() {
         return new CarNameComparator();
     }
 
-    public static Comparator<Car> getCarProfComparator() {
-        return new CarNameComparator();
+    public static Comparator<UserDetails> getCarProfComparator() {
+        return new CarProfComparator();
     }
 
-    public static Comparator<Car> getCarTestComparator() {
-        return new CarNameComparator();
-    }
+    public static Comparator<UserDetails> getCarTestComparator() { return new CarTestComparator(); }
 
-    public static Comparator<Car> getCarResultComparator() {
-        return new CarNameComparator();
-    }
+    public static Comparator<UserDetails> getCarResultComparator() { return new CarResultComparator(); }
 
-    private static class CarNameComparator implements Comparator<Car> {
+    public static Comparator<UserDetails> getCarDataComparator() { return new CarDataComparator(); }
+
+    private static class CarNameComparator implements Comparator<UserDetails> {
 
         @Override
-        public int compare(final Car car1, final Car car2) {
-            return car1.getName().compareTo(car2.getName());
+        public int compare(final UserDetails userDetails1, final UserDetails userDetails2) {
+            return userDetails1.getName().compareTo(userDetails2.getName());
         }
     }
 
-    private static class CarProfComparator implements Comparator<Car> {
+    private static class CarProfComparator implements Comparator<UserDetails> {
 
         @Override
-        public int compare(final Car car1, final Car car2) {
-            return car1.getProf().compareTo(car2.getProf());
+        public int compare(final UserDetails userDetails1, final UserDetails userDetails2) {
+            return userDetails1.getProf().compareTo(userDetails2.getProf());
         }
     }
 
-    private static class CarTestComparator implements Comparator<Car> {
+    private static class CarTestComparator implements Comparator<UserDetails> {
 
         @Override
-        public int compare(final Car car1, final Car car2) {
-            if (car1.getTest() < car2.getTest()) return -1;
-            if (car1.getTest() > car2.getTest()) return 1;
-            return 0;
+        public int compare(final UserDetails userDetails1, final UserDetails userDetails2) {
+            return userDetails1.getTest().compareTo(userDetails2.getTest());
         }
     }
 
-    private static class CarResultComparator implements Comparator<Car> {
+    private static class CarDataComparator implements Comparator<UserDetails> {
 
         @Override
-        public int compare(final Car car1, final Car car2) {
-            return car1.getResult().compareTo(car2.getResult());
+        public int compare(final UserDetails userDetails1, final UserDetails userDetails2) {
+            return userDetails1.getData().compareTo(userDetails2.getData());
+        }
+    }
+
+    private static class CarResultComparator implements Comparator<UserDetails> {
+
+        @Override
+        public int compare(final UserDetails userDetails1, final UserDetails userDetails2) {
+            return userDetails1.getResult().compareTo(userDetails2.getResult());
         }
     }
 }
