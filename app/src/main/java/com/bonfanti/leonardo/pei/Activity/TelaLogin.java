@@ -40,7 +40,6 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
 
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
-    FirebaseAuth.AuthStateListener firebaseListener;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,21 +48,6 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
-        firebaseListener = new FirebaseAuth.AuthStateListener()
-        {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
-            {
-                if(firebaseAuth.getCurrentUser() != null)
-                {
-                    final FireApp fireApp= (FireApp) getApplicationContext();
-                    fireApp.setUserKey(firebaseAuth.getCurrentUser().getUid().toString());
-
-                    Intent intent = new Intent(TelaLogin.this, TelaSalas.class);
-                    startActivity(intent);
-                }
-            }
-        };
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
         AppOptions.UiChangeListener(getWindow().getDecorView());
@@ -87,8 +71,6 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
     protected void onStart()
     {
         super.onStart();
-
-        firebaseAuth.addAuthStateListener(firebaseListener);
     }
 
     void configButton()

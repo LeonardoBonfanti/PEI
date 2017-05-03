@@ -11,7 +11,6 @@ import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
 import com.bonfanti.leonardo.pei.Utils.SortableCarTableView;
 import com.bonfanti.leonardo.pei.Utils.UserDetails;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -81,14 +80,32 @@ public class TelaResultados extends AppCompatActivity
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren())
                 {
                     String nome = childDataSnapshot.child("Nome").getValue().toString();
-                    String[] splited =  nome.split("@");
-                    nome = splited[0].trim();
 
-                    ArrayList<String> tratados = trataRetorno(childDataSnapshot.child("Sala").getValue().toString());
+                    if(childDataSnapshot.hasChild("Sala"))
+                    {
+                        for (DataSnapshot child : childDataSnapshot.child("Sala").getChildren())
+                        {
+                            String prof = child.getKey().toString();
+                            String dataFormated = "";
+                            String teste = "";
+                            String result = "";
 
-                    final UserDetails row = new UserDetails(nome, tratados.get(UserDetails.PROF).toString(), tratados.get(UserDetails.TESTE).toString(),
-                            tratados.get(UserDetails.DATA).toString(), tratados.get(UserDetails.RESULT).toString());
-                    userDetailses.add(row);
+                            for (DataSnapshot child2 : childDataSnapshot.child("Sala").child(prof).getChildren())
+                            {
+                                String data = child2.getKey().toString();
+                                dataFormated = data.replace("_","/");
+
+                                for (DataSnapshot child3 : childDataSnapshot.child("Sala").child(prof).child(data).getChildren())
+                                {
+                                    teste = child3.getKey().toString();
+                                    result = child3.getValue().toString();
+                                }
+                            }
+
+                            final UserDetails row = new UserDetails(nome, prof, teste, dataFormated, result);
+                            userDetailses.add(row);
+                        }
+                    }
 
                     if(controler == dataSnapshot.getChildrenCount())
                         populate();
@@ -108,31 +125,5 @@ public class TelaResultados extends AppCompatActivity
     {
         final CarTableDataAdapter carTableDataAdapter = new CarTableDataAdapter(this, userDetailses, carTableView);
         carTableView.setDataAdapter(carTableDataAdapter);
-    }
-
-    private ArrayList<String> trataRetorno(String texto)
-    {
-        ArrayList<String> retorno = new ArrayList<>();
-
-        String[] splited = texto.split("\\{");
-
-        String prof = splited[1].trim();
-        prof = prof.replace("=", "");
-
-        String data = splited[3].trim();
-        data = data.replace("=", "");
-        data = data.replace("_", "/");
-
-        String[] teste = splited[5].split("=");
-        String numero = teste[0].trim();
-        String result = teste[1].trim();
-        result = result.replace("}", "");
-
-        retorno.add(prof.toUpperCase());
-        retorno.add(numero.toUpperCase());
-        retorno.add(data.toUpperCase());
-        retorno.add(result.toUpperCase());
-
-        return retorno;
     }
 }

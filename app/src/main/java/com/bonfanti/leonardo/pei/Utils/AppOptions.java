@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 /**
  * Created by Usuário on 3/16/2017.
@@ -42,6 +43,9 @@ public class AppOptions extends AppCompatActivity
     public static final int HEAVY_BLUE = 12;
     public static final int HEAVY_PURPLE = 13;
     public static final int HEAVY_RED = 14;
+
+    public static final String LEO_ID = "De2wii6xfkOB7aOSU2jSgEIso572";
+    public static final String ALE_ID = "XU589vh30wS4CAQRjItKEi46Zxj1";
 
     public static int getUiOptions()
     {
@@ -153,7 +157,7 @@ public class AppOptions extends AppCompatActivity
 
         String date = getDateFormated();
 
-        current_user.child("Sala").child(sala).child("Data").child(date).child("Teste").child(teste).setValue(result);
+        current_user.child("Sala").child(sala).child(date).child(teste).setValue(result);
     }
 
     private static String getDateFormated()
@@ -164,8 +168,23 @@ public class AppOptions extends AppCompatActivity
         int year = cal.get(Calendar.YEAR);
 
         String date = String.valueOf(day) + "_" + String.valueOf(month) + "_" + String.valueOf(year);
+        date = date + " - " + getTimeFormated();
 
         return  date;
+    }
+
+    private static String getTimeFormated()
+    {
+
+        Calendar cal = Calendar.getInstance();
+        TimeZone tz = TimeZone.getTimeZone("Brazil/East");
+        cal.setTimeZone(tz);
+
+        String currentHour = String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
+        String currentMinute = String.valueOf(cal.get(Calendar.MINUTE));
+        String currentSecond = String.valueOf(cal.get(Calendar.SECOND));
+
+        return currentHour + ":" + currentMinute + ":" + currentSecond;
     }
 
     /* RETORNA A COR DESEJADA */

@@ -100,17 +100,17 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
 
     void verificaNivel()
     {
-        int teste = AppOptions.computeLevenshteinDistance(resposta, "O MENINO DESENHA NO CADERNO");
+        int total = AppOptions.computeLevenshteinDistance(resposta, "O MENINO DESENHA NO CADERNO");
         String result;
 
-        if(teste <= 1)
-            result = "Alfabética";
-        else if(teste > 1 & teste <= 3)
-            result = "Silábico-Alfabética";
-        else if(teste == 4)
-            result = "Silábica";
+        if(total <= 1)
+            result = "ALFABÉTICA";
+        else if(total > 1 & total <= 3)
+            result = "SILÁBICO-ALFABÉTICA";
+        else if(total == 4)
+            result = "SILÁBICA";
         else
-            result = "Pré-Silábica";
+            result = "PRÉ-SILÁBICA";
 
         final FireApp fireApp= (FireApp) getApplicationContext();
         String key = fireApp.getUserKey();

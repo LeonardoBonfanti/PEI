@@ -95,7 +95,7 @@ public class TelaSalas extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                String nome = input.getText().toString();
+                String nome = input.getText().toString().toUpperCase();
 
                 if(nome.isEmpty())
                     Toast.makeText(getBaseContext(), "Nome não digitado!", Toast.LENGTH_SHORT).show();
@@ -224,7 +224,7 @@ public class TelaSalas extends AppCompatActivity
         final FireApp fireApp= (FireApp) getApplicationContext();
         String key = fireApp.getUserKey();
 
-        if(!key.equals("jqAjpmq6xbez4G8s4Ujj1vuaLHa2") && !key.equals("noeYIjHB1gMo0FIpQaS63o19AIk1"))
+        if(!key.equals(AppOptions.LEO_ID) && !key.equals(AppOptions.ALE_ID))
         {
             MenuItem item = menu.findItem(R.id.action_add);
             item.setVisible(false);

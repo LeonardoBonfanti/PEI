@@ -55,7 +55,8 @@ public class GridSalasAdapter extends ArrayAdapter<String[]>
         final FireApp fireApp= (FireApp) mContext.getApplicationContext();
         String key = fireApp.getUserKey();
 
-        if(!key.equals("jqAjpmq6xbez4G8s4Ujj1vuaLHa2") && !key.equals("noeYIjHB1gMo0FIpQaS63o19AIk1")) {
+        if(!key.equals(AppOptions.LEO_ID) && !key.equals(AppOptions.ALE_ID))
+        {
             holder.delete.setVisibility(View.INVISIBLE);
             holder.delete.setEnabled(false);
         }

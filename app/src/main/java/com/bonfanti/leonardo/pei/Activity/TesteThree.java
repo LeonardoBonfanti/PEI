@@ -127,13 +127,13 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
         String result;
 
         if(total <= 1)
-            result = "Alfabética";
+            result = "ALFABÉTICA";
         else if(total > 1 & total <= 3)
-            result = "Silábico-Alfabética";
+            result = "SILÁBICO-ALFABÉTICA";
         else if(total == 4)
-            result = "Silábica";
+            result = "SILÁBICA";
         else
-            result = "Pré-Silábica";
+            result = "PRÉ-SILÁBICA";
 
         final FireApp fireApp= (FireApp) getApplicationContext();
         String key = fireApp.getUserKey();
