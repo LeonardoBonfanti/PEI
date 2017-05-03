@@ -39,6 +39,7 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
     boolean validado;
 
     RelativeLayout relativeLayout;
+    FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
 
     @Override
@@ -47,6 +48,7 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teste_one);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
@@ -185,8 +187,6 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
 
         total = total/resultadoConjunto.size();
 
-        Intent intent = new Intent(this, TelaResultadoTemp.class);
-
         if(total <= 1)
             result = "Alfabética";
         else if(total > 1 & total <= 3)
@@ -196,8 +196,6 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         else
             result = "Pré-Silábica";
 
-            intent.putExtra("EXTRA_SESSION_ID", result);
-
         final FireApp fireApp= (FireApp) getApplicationContext();
         String key = fireApp.getUserKey();
         String sala = fireApp.getUserSala();
@@ -206,6 +204,9 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
 
         validado = true;
 
+        firebaseAuth.signOut();
+
+        Intent intent = new Intent(this, TelaLoginCadastro.class);
         startActivity(intent);
     }
 }

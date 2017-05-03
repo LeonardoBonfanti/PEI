@@ -69,12 +69,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaResultadoTemp" android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".Activity.TelaResultados" android:screenOrientation="landscape" android:parentActivityName=".Activity.TelaSalas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

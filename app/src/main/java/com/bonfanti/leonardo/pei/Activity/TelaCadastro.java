@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
+import com.bonfanti.leonardo.pei.Utils.FireApp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -96,7 +97,6 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
         else
         {
             String pass = passGenerator();
-
             newUser(nome, pass);
         }
     }
@@ -106,7 +106,9 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
         progressDialog.setMessage("CRIANDO...");
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(nome+"@PEI.COM", pass)
+        String email = nome.replace(" ", "_");
+
+        firebaseAuth.createUserWithEmailAndPassword(email+"@PEI.COM", pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
                 {
                     @Override
@@ -127,12 +129,16 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
 
                             intent.putExtra("NEW_NOME", nome);
                             intent.putExtra("NEW_PASS", pass);
-                            intent.putExtra("USER_KEY", user_id);
+
+                            final FireApp fireApp= (FireApp) getApplicationContext();
+                            fireApp.setUserKey(user_id);
 
                             startActivity(intent);
                         }
-                        else
+                        else {
                             Toast.makeText(TelaCadastro.this, "ERRO AO CRIAR CONTA!", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
                     }
                 });
     }

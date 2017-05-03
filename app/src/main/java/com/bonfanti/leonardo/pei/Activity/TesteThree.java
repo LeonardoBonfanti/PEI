@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
 import com.bonfanti.leonardo.pei.Utils.FireApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,6 +34,7 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
     String resposta;
     RelativeLayout relativeLayout;
 
+    FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
 
     @Override
@@ -41,6 +43,7 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teste_three);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
@@ -123,8 +126,6 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
         int total = possibilities();
         String result;
 
-        Intent intent = new Intent(this, TelaResultadoTemp.class);
-
         if(total <= 1)
             result = "Alfabética";
         else if(total > 1 & total <= 3)
@@ -134,14 +135,15 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
         else
             result = "Pré-Silábica";
 
-        intent.putExtra("EXTRA_SESSION_ID", result);
-
         final FireApp fireApp= (FireApp) getApplicationContext();
         String key = fireApp.getUserKey();
         String sala = fireApp.getUserSala();
 
         AppOptions.saveData(result, sala, key, "TRÊS", databaseReference);
 
+        firebaseAuth.signOut();
+
+        Intent intent = new Intent(this, TelaLoginCadastro.class);
         startActivity(intent);
     }
 }

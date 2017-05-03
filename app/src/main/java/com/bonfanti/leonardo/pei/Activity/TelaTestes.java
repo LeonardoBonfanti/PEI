@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
 import com.bonfanti.leonardo.pei.Utils.FireApp;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Created by Usuário on 3/8/2017.
@@ -31,11 +32,15 @@ public class TelaTestes extends AppCompatActivity
     CardView myCard3;
     CardView myCard4;
 
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_testes);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
         AppOptions.UiChangeListener(getWindow().getDecorView());
@@ -154,14 +159,28 @@ public class TelaTestes extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        Intent intent;
+
         switch (item.getItemId())
         {
+            case R.id.action_resultados:
+
+                intent = new Intent(this, TelaResultados.class);
+                startActivity(intent);
+
+                return true;
+
             case R.id.action_inicio:
                 // User chose the "Início" item, show the app settings UI...
                 return true;
 
             case R.id.action_logout:
-                // User chose the "Sair" item, show the app settings UI...
+
+                firebaseAuth.signOut();
+
+                intent = new Intent(this, TelaLoginCadastro.class);
+                startActivity(intent);
+
                 return true;
 
             default:
@@ -176,7 +195,19 @@ public class TelaTestes extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.tool_itens_regular, menu);
+        menuInflater.inflate(R.menu.tool_itens, menu);
+
+        MenuItem item = menu.findItem(R.id.action_add);
+        item.setVisible(false);
+
+        final FireApp fireApp= (FireApp) getApplicationContext();
+        String key = fireApp.getUserKey();
+
+        if(!key.equals("jqAjpmq6xbez4G8s4Ujj1vuaLHa2") && !key.equals("noeYIjHB1gMo0FIpQaS63o19AIk1"))
+        {
+            item = menu.findItem(R.id.action_resultados);
+            item.setVisible(false);
+        }
 
         return true;
     }

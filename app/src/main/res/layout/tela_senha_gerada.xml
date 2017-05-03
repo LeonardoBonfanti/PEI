@@ -16,7 +16,7 @@
         android:id="@+id/txtBemVindo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BEM VINDO"
+        android:text="BEM-VINDO"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
         android:textAlignment="center"

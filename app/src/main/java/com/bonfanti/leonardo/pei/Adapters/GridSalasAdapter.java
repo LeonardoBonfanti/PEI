@@ -1,6 +1,5 @@
 package com.bonfanti.leonardo.pei.Adapters;
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,17 +7,19 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bonfanti.leonardo.pei.Activity.TelaSalas;
 import com.bonfanti.leonardo.pei.Activity.TelaTestes;
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
 import com.bonfanti.leonardo.pei.Utils.FireApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -26,14 +27,17 @@ import java.util.ArrayList;
  * Created by Usuário on 4/21/2017.
  */
 
-public class GridSalasAdapter extends ArrayAdapter<String[]> {
+public class GridSalasAdapter extends ArrayAdapter<String[]>
+{
     Context mContext;
     ArrayList<String> data;
+    DatabaseReference databaseReference;
 
     public GridSalasAdapter(Context context, ArrayList<String> temp) {
         super(context, R.layout.custom_button_salas);
         mContext = context;
         this.data = temp;
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Salas");
     }
 
     @Override
@@ -47,6 +51,14 @@ public class GridSalasAdapter extends ArrayAdapter<String[]> {
         holder.button = (Button) row.findViewById(R.id.btnSala);
         holder.textView = (TextView) row.findViewById(R.id.txtProfessor);
         holder.delete = (Button) row.findViewById(R.id.btnDeleteSala);
+
+        final FireApp fireApp= (FireApp) mContext.getApplicationContext();
+        String key = fireApp.getUserKey();
+
+        if(!key.equals("jqAjpmq6xbez4G8s4Ujj1vuaLHa2") && !key.equals("noeYIjHB1gMo0FIpQaS63o19AIk1")) {
+            holder.delete.setVisibility(View.INVISIBLE);
+            holder.delete.setEnabled(false);
+        }
 
         row.setTag(holder);
 
@@ -81,7 +93,7 @@ public class GridSalasAdapter extends ArrayAdapter<String[]> {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-
+                        databaseReference.child(holder.button.getText().toString()).removeValue();
                     }
                 });
                 builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {

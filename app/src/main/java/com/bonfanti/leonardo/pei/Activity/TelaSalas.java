@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
-import android.support.v4.graphics.drawable.DrawableCompat;
+
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -224,7 +224,7 @@ public class TelaSalas extends AppCompatActivity
         final FireApp fireApp= (FireApp) getApplicationContext();
         String key = fireApp.getUserKey();
 
-        if(!key.equals("jqAjpmq6xbez4G8s4Ujj1vuaLHa2"))
+        if(!key.equals("jqAjpmq6xbez4G8s4Ujj1vuaLHa2") && !key.equals("noeYIjHB1gMo0FIpQaS63o19AIk1"))
         {
             MenuItem item = menu.findItem(R.id.action_add);
             item.setVisible(false);

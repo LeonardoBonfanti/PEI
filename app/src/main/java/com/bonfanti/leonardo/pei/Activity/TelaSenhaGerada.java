@@ -82,7 +82,10 @@ public class TelaSenhaGerada extends AppCompatActivity implements View.OnClickLi
     void getInfosUser()
     {
         TextView myTextName = (TextView)findViewById(R.id.txtUserName);
-        myTextName.setText(getIntent().getStringExtra("NEW_NOME"));
+
+        String nome = getIntent().getStringExtra("NEW_NOME");
+        nome = nome.replace("_", " ");
+        myTextName.setText(nome);
 
         TextView myTextPass= (TextView)findViewById(R.id.txtUserPass);
         myTextPass.setText(getIntent().getStringExtra("NEW_PASS"));
@@ -93,9 +96,6 @@ public class TelaSenhaGerada extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view)
     {
         Intent intent = new Intent(this, TelaSalas.class);
-
-        intent.putExtra("USER_KEY", getIntent().getStringExtra("USER_KEY"));
-
         startActivity(intent);
     }
 }

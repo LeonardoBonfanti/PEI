@@ -10,7 +10,6 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,9 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-
-
 /**
  * Created by Usuário on 3/24/2017.
  */
@@ -45,8 +41,6 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     FirebaseAuth.AuthStateListener firebaseListener;
-
-    ArrayList<String> arraySalas;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -73,8 +67,6 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
         AppOptions.UiChangeListener(getWindow().getDecorView());
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arraySalas);
 
         progressDialog = new ProgressDialog(this);
 
@@ -135,7 +127,10 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view)
     {
-        final String nome = myEditNome.getText().toString() + "@PEI.COM";
+        final String nome = myEditNome.getText().toString();
+        String monta = nome.replace(" ","_");
+
+        final String email = monta + "@PEI.COM";
         final String pass = myEditPass.getText().toString();
 
         if(TextUtils.isEmpty(nome) || TextUtils.isEmpty(pass))
@@ -145,7 +140,7 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
             progressDialog.setMessage("ENTRANDO...");
             progressDialog.show();
 
-            firebaseAuth.signInWithEmailAndPassword(nome, pass)
+            firebaseAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>()
                     {
                         @Override
