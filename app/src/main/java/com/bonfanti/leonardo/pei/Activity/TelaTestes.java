@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -163,15 +164,17 @@ public class TelaTestes extends AppCompatActivity
 
         switch (item.getItemId())
         {
+            case R.id.action_about:
+
+                AppOptions.createPopUpAbout(this);
+
+                return true;
+
             case R.id.action_resultados:
 
                 intent = new Intent(this, TelaResultados.class);
                 startActivity(intent);
 
-                return true;
-
-            case R.id.action_inicio:
-                // User chose the "Início" item, show the app settings UI...
                 return true;
 
             case R.id.action_logout:

@@ -194,8 +194,10 @@ public class TelaSalas extends AppCompatActivity
 
                 return true;
 
-            case R.id.action_inicio:
-                // User chose the "Início" item, show the app settings UI...
+            case R.id.action_about:
+
+                AppOptions.createPopUpAbout(this);
+
                 return true;
 
             case R.id.action_logout:

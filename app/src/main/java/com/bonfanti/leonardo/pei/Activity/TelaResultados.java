@@ -1,16 +1,23 @@
 package com.bonfanti.leonardo.pei.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.bonfanti.leonardo.pei.Adapters.CarTableDataAdapter;
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
+import com.bonfanti.leonardo.pei.Utils.FireApp;
 import com.bonfanti.leonardo.pei.Utils.SortableCarTableView;
 import com.bonfanti.leonardo.pei.Utils.UserDetails;
+import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +38,7 @@ public class TelaResultados extends AppCompatActivity
     List<UserDetails> userDetailses;
     SortableCarTableView carTableView;
 
+    FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
 
     @Override
@@ -40,6 +48,7 @@ public class TelaResultados extends AppCompatActivity
         setContentView(R.layout.tela_resultados);
 
         controler = 1;
+        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         userDetailses = new ArrayList<>();
@@ -99,11 +108,14 @@ public class TelaResultados extends AppCompatActivity
                                 {
                                     teste = child3.getKey().toString();
                                     result = child3.getValue().toString();
+
+                                    final UserDetails row = new UserDetails(nome, prof, teste, dataFormated, result);
+                                    userDetailses.add(row);
                                 }
                             }
 
-                            final UserDetails row = new UserDetails(nome, prof, teste, dataFormated, result);
-                            userDetailses.add(row);
+//                            final UserDetails row = new UserDetails(nome, prof, teste, dataFormated, result);
+//                            userDetailses.add(row);
                         }
                     }
 
@@ -125,5 +137,52 @@ public class TelaResultados extends AppCompatActivity
     {
         final CarTableDataAdapter carTableDataAdapter = new CarTableDataAdapter(this, userDetailses, carTableView);
         carTableView.setDataAdapter(carTableDataAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        Intent intent;
+
+        switch (item.getItemId())
+        {
+            case R.id.action_about:
+
+                AppOptions.createPopUpAbout(this);
+
+                return true;
+
+            case R.id.action_logout:
+
+                firebaseAuth.signOut();
+
+                intent = new Intent(this, TelaLoginCadastro.class);
+                startActivity(intent);
+
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /* Trigger para mostar devidamente a Toolbar com os elementos criados no xml */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.tool_itens, menu);
+
+        final FireApp fireApp= (FireApp) getApplicationContext();
+        String key = fireApp.getUserKey();
+
+        MenuItem item = menu.findItem(R.id.action_add);
+        item.setVisible(false);
+        item = menu.findItem(R.id.action_resultados);
+        item.setVisible(false);
+
+        return true;
     }
 }

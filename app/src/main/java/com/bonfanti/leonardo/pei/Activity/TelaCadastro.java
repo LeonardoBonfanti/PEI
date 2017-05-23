@@ -49,7 +49,6 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.tela_cadastro);
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
-
         AppOptions.UiChangeListener(getWindow().getDecorView());
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -122,6 +121,7 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
 
                             current_user.child("Nome").setValue(nome);
                             current_user.child("Senha").setValue(pass);
+                            current_user.child("Professor").setValue(0);
 
                             progressDialog.dismiss();
 

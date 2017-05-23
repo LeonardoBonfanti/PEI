@@ -1,8 +1,10 @@
 package com.bonfanti.leonardo.pei.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.View;
@@ -141,9 +143,39 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
 
         AppOptions.saveData(result, sala, key, "TRÊS", databaseReference);
 
-        firebaseAuth.signOut();
+        createPopUpBeforeEnding();
+    }
 
-        Intent intent = new Intent(this, TelaLoginCadastro.class);
-        startActivity(intent);
+    private void createPopUpBeforeEnding()
+    {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("REALIZAR OUTRO TESTE?");
+
+        // Set up the buttons
+        builder.setPositiveButton("SIM", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                Intent intent = new Intent(TesteThree.this, TelaTestes.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                firebaseAuth.signOut();
+
+                dialog.cancel();
+
+                Intent intent = new Intent(TesteThree.this, TelaLoginCadastro.class);
+                startActivity(intent);
+
+                return;
+            }
+        });
+
+        builder.show();
     }
 }

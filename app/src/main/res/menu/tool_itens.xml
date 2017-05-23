@@ -14,8 +14,13 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_inicio"
-        android:title="INÍCIO"
+        android:id="@+id/action_about"
+        android:title="SOBRE"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_testes"
+        android:title="TESTES"
         app:showAsAction="never"/>
 
     <item

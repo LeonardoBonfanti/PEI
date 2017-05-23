@@ -1,11 +1,13 @@
 package com.bonfanti.leonardo.pei.Utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.bonfanti.leonardo.pei.R;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.Calendar;
@@ -45,7 +48,7 @@ public class AppOptions extends AppCompatActivity
     public static final int HEAVY_RED = 14;
 
     public static final String LEO_ID = "De2wii6xfkOB7aOSU2jSgEIso572";
-    public static final String ALE_ID = "XU589vh30wS4CAQRjItKEi46Zxj1";
+    public static final String ALE_ID = "QLuNWWU9LNa19djNziyc5qR3dag1";
 
     public static int getUiOptions()
     {
@@ -258,5 +261,26 @@ public class AppOptions extends AppCompatActivity
         }
 
         return "";
+    }
+
+    public static void createPopUpAbout(Context context)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setMessage(AppOptions.getAbout()).setTitle("Hipótese da Escrita");
+        builder.setIcon(R.drawable.icon_about);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    static private String getAbout()
+    {
+        String about = "        A criança desde de muito cedo, por volta de 2 anos e meio ou 3 anos, é capaz de tornar-se um produtor de textos. ";
+        about += "Habituada desde pequena a fazer uso de lápis e papel, registra suas primeiras tentativas de escrever, diferentemente das tentativas de desenhar.\n\n";
+        about += "      Sendo assim esse aplicativo tem o intuito de auxiliar educadores na tarefa de identificar o nível hipotético de escrita em que a criança encontra-se ";
+        about += "de acordo com a fase de alfabetização em que está inserida.";
+
+        return about;
     }
 }
