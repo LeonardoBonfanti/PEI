@@ -47,9 +47,6 @@ public class AppOptions extends AppCompatActivity
     public static final int HEAVY_PURPLE = 13;
     public static final int HEAVY_RED = 14;
 
-    public static final String LEO_ID = "De2wii6xfkOB7aOSU2jSgEIso572";
-    public static final String ALE_ID = "QLuNWWU9LNa19djNziyc5qR3dag1";
-
     public static int getUiOptions()
     {
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION

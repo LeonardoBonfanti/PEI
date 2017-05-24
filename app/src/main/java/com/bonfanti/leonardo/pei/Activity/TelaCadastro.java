@@ -121,6 +121,7 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
 
                             current_user.child("Nome").setValue(nome);
                             current_user.child("Senha").setValue(pass);
+                            current_user.child("Admin").setValue(0);
                             current_user.child("Professor").setValue(0);
 
                             progressDialog.dismiss();
@@ -132,6 +133,8 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
 
                             final FireApp fireApp= (FireApp) getApplicationContext();
                             fireApp.setUserKey(user_id);
+                            fireApp.setProfessor(0);
+                            fireApp.setAdmin(0);
 
                             startActivity(intent);
                         }

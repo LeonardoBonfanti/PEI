@@ -52,9 +52,9 @@ public class GridSalasAdapter extends ArrayAdapter<String[]>
         holder.delete = (Button) row.findViewById(R.id.btnDeleteSala);
 
         final FireApp fireApp= (FireApp) mContext.getApplicationContext();
-        String key = fireApp.getUserKey();
+        int admin = fireApp.getAdmin();
 
-        if(!key.equals(AppOptions.LEO_ID) && !key.equals(AppOptions.ALE_ID))
+        if(admin != 1)
         {
             holder.delete.setVisibility(View.INVISIBLE);
             holder.delete.setEnabled(false);

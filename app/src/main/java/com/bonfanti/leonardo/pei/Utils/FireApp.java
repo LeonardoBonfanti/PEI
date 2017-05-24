@@ -11,6 +11,8 @@ public class FireApp extends Application
 {
     private String userKey;
     private String userSala;
+    private Integer admin;
+    private Integer professor;
 
     @Override
     public void onCreate()
@@ -31,6 +33,22 @@ public class FireApp extends Application
 
     public void setUserSala(String userSala) {
         this.userSala = userSala;
+    }
+
+    public Integer getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Integer admin) {
+        this.admin = admin;
+    }
+
+    public Integer getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Integer professor) {
+        this.professor = professor;
     }
 }
 

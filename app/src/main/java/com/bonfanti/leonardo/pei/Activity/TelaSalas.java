@@ -224,11 +224,22 @@ public class TelaSalas extends AppCompatActivity
         menuInflater.inflate(R.menu.tool_itens, menu);
 
         final FireApp fireApp= (FireApp) getApplicationContext();
-        String key = fireApp.getUserKey();
+        int admin = fireApp.getAdmin();
+        int professor = fireApp.getProfessor();
 
-        if(!key.equals(AppOptions.LEO_ID) && !key.equals(AppOptions.ALE_ID))
+        MenuItem item;
+
+        if(admin != 1)
         {
-            MenuItem item = menu.findItem(R.id.action_add);
+            if(professor == 1)
+            {
+                item = menu.findItem(R.id.action_add);
+                item.setVisible(false);
+
+                return true;
+            }
+
+            item = menu.findItem(R.id.action_add);
             item.setVisible(false);
             item = menu.findItem(R.id.action_resultados);
             item.setVisible(false);

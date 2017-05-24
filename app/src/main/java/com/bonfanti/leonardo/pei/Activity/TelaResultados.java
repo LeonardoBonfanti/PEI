@@ -109,13 +109,18 @@ public class TelaResultados extends AppCompatActivity
                                     teste = child3.getKey().toString();
                                     result = child3.getValue().toString();
 
-                                    final UserDetails row = new UserDetails(nome, prof, teste, dataFormated, result);
-                                    userDetailses.add(row);
+                                    final FireApp fireApp= (FireApp) getApplicationContext();
+                                    String profName = fireApp.getUserSala();
+
+                                    final UserDetails row;
+
+                                    if(profName.equals(prof))
+                                    {
+                                        row = new UserDetails(nome, prof, teste, dataFormated, result);
+                                        userDetailses.add(row);
+                                    }
                                 }
                             }
-
-//                            final UserDetails row = new UserDetails(nome, prof, teste, dataFormated, result);
-//                            userDetailses.add(row);
                         }
                     }
 
@@ -174,9 +179,6 @@ public class TelaResultados extends AppCompatActivity
     {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.tool_itens, menu);
-
-        final FireApp fireApp= (FireApp) getApplicationContext();
-        String key = fireApp.getUserKey();
 
         MenuItem item = menu.findItem(R.id.action_add);
         item.setVisible(false);

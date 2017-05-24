@@ -200,14 +200,18 @@ public class TelaTestes extends AppCompatActivity
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.tool_itens, menu);
 
+        final FireApp fireApp= (FireApp) getApplicationContext();
+        int admin = fireApp.getAdmin();
+        int professor = fireApp.getProfessor();
+
         MenuItem item = menu.findItem(R.id.action_add);
         item.setVisible(false);
 
-        final FireApp fireApp= (FireApp) getApplicationContext();
-        String key = fireApp.getUserKey();
-
-        if(!key.equals(AppOptions.LEO_ID) && !key.equals(AppOptions.ALE_ID))
+        if(admin != 1)
         {
+            if(professor == 1)
+                return true;
+
             item = menu.findItem(R.id.action_resultados);
             item.setVisible(false);
         }

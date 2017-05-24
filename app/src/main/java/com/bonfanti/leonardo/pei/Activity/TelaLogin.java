@@ -23,8 +23,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by Usuário on 3/24/2017.
@@ -130,20 +138,45 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
                         {
                             if(task.isSuccessful())
                             {
-                                String user_id = firebaseAuth.getCurrentUser().getUid();
+                                final String user_id = firebaseAuth.getCurrentUser().getUid();
 
-                                DatabaseReference current_user = databaseReference.child(user_id);
+                                final DatabaseReference current_user = databaseReference.child(user_id);
 
-                                current_user.child("Nome").setValue(nome);
-                                current_user.child("Senha").setValue(pass);
+                                //final ArrayList<Object> userInfos = new ArrayList<Object>();
+                                final HashMap<Object, Object> userInfos = new HashMap<Object, Object>();
 
-                                progressDialog.dismiss();
+                                current_user.addListenerForSingleValueEvent(new ValueEventListener()
+                                {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot)
+                                    {
+                                        for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren())
+                                            userInfos.put(childDataSnapshot.getKey(), childDataSnapshot.getValue());
 
-                                final FireApp fireApp= (FireApp) getApplicationContext();
-                                fireApp.setUserKey(user_id);
+                                        if(userInfos.isEmpty())
+                                        {
+                                            current_user.child("Nome").setValue(nome);
+                                            current_user.child("Senha").setValue(pass);
+                                            current_user.child("Admin").setValue(0);
+                                            current_user.child("Professor").setValue(0);
+                                        }
+                                        else
+                                        {
+                                            final FireApp fireApp= (FireApp) getApplicationContext();
+                                            fireApp.setUserKey(user_id);
+                                            fireApp.setAdmin(Integer.parseInt(userInfos.get("Admin").toString()));
+                                            fireApp.setProfessor(Integer.parseInt(userInfos.get("Professor").toString()));
+                                        }
 
-                                Intent intent = new Intent(TelaLogin.this, TelaSalas.class);
-                                startActivity(intent);
+                                        progressDialog.dismiss();
+
+                                        Intent intent = new Intent(TelaLogin.this, TelaSalas.class);
+                                        startActivity(intent);
+                                    }
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                    }
+                                });
                             }
                             else {
                                 Toast.makeText(TelaLogin.this, "FALHA AO ENTRAR", Toast.LENGTH_LONG).show();
