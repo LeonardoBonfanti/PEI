@@ -164,6 +164,7 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
                                         {
                                             final FireApp fireApp= (FireApp) getApplicationContext();
                                             fireApp.setUserKey(user_id);
+                                            fireApp.setUserName(nome);
                                             fireApp.setAdmin(Integer.parseInt(userInfos.get("Admin").toString()));
                                             fireApp.setProfessor(Integer.parseInt(userInfos.get("Professor").toString()));
                                         }

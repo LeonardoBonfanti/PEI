@@ -4,17 +4,21 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bonfanti.leonardo.pei.Utils.AppOptions;
 import com.bonfanti.leonardo.pei.Utils.UserDetails;
 
 import java.util.List;
 
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
+import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 
 /**
  * Created by Usuário on 4/26/2017.
@@ -23,10 +27,13 @@ import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
 public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<UserDetails> {
 
     private static final int TEXT_SIZE = 14;
+    Context context;
 
 
-    public CarTableDataAdapter(final Context context, final List<UserDetails> data, final TableView<UserDetails> tableView) {
+    public CarTableDataAdapter(final Context context, final List<UserDetails> data, final TableView<UserDetails> tableView)
+    {
         super(context, data, tableView);
+        this.context = context;
     }
 
     @Override
@@ -38,10 +45,10 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<UserDeta
         switch (columnIndex)
         {
             case 0:
-                renderedView = renderCatName(userDetails);
+                renderedView = renderCatProf(userDetails);
                 break;
             case 1:
-                renderedView = renderCatProf(userDetails);
+                renderedView = renderCatName(userDetails);
                 break;
             case 2:
                 renderedView = renderCatTest(userDetails);
@@ -51,6 +58,14 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<UserDeta
                 break;
             case 4:
                 renderedView = renderCatResult(userDetails);
+                renderedView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        TextView txt = (TextView) view;
+                        AppOptions.getResultDescription(context, txt, txt.getText().toString());
+                    }
+                });
                 break;
         }
 

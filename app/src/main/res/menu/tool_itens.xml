@@ -19,11 +19,6 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_testes"
-        android:title="TESTES"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/action_logout"
         android:title="SAIR"
         app:showAsAction="never"/>

@@ -10,6 +10,7 @@ import com.firebase.client.Firebase;
 public class FireApp extends Application
 {
     private String userKey;
+    private String userName;
     private String userSala;
     private Integer admin;
     private Integer professor;
@@ -49,6 +50,14 @@ public class FireApp extends Application
 
     public void setProfessor(Integer professor) {
         this.professor = professor;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
 

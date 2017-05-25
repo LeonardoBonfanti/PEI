@@ -110,13 +110,18 @@ public class TelaResultados extends AppCompatActivity
                                     result = child3.getValue().toString();
 
                                     final FireApp fireApp= (FireApp) getApplicationContext();
-                                    String profName = fireApp.getUserSala();
+                                    String profName = fireApp.getUserName();
 
                                     final UserDetails row;
 
-                                    if(profName.equals(prof))
+                                    if(fireApp.getAdmin() == 1)
                                     {
-                                        row = new UserDetails(nome, prof, teste, dataFormated, result);
+                                        row = new UserDetails(prof, nome, teste, dataFormated, result);
+                                        userDetailses.add(row);
+                                    }
+                                    else if(profName.equals(prof))
+                                    {
+                                        row = new UserDetails(prof, nome, teste, dataFormated, result);
                                         userDetailses.add(row);
                                     }
                                 }
