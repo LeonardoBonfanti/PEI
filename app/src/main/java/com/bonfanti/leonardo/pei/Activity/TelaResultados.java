@@ -104,17 +104,18 @@ public class TelaResultados extends AppCompatActivity
                                 String data = child2.getKey().toString();
                                 dataFormated = data.replace("_","/");
 
+                                final FireApp fireApp= (FireApp) getApplicationContext();
+                                String profName = fireApp.getUserName();
+                                int admin = fireApp.getAdmin();
+
                                 for (DataSnapshot child3 : childDataSnapshot.child("Sala").child(prof).child(data).getChildren())
                                 {
                                     teste = child3.getKey().toString();
                                     result = child3.getValue().toString();
 
-                                    final FireApp fireApp= (FireApp) getApplicationContext();
-                                    String profName = fireApp.getUserName();
-
                                     final UserDetails row;
 
-                                    if(fireApp.getAdmin() == 1)
+                                    if(admin == 1)
                                     {
                                         row = new UserDetails(prof, nome, teste, dataFormated, result);
                                         userDetailses.add(row);

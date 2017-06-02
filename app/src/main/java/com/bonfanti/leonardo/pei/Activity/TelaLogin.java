@@ -171,7 +171,7 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
 
                                         progressDialog.dismiss();
 
-                                        Intent intent = new Intent(TelaLogin.this, TelaSalas.class);
+                                        Intent intent = new Intent(TelaLogin.this, MainActivity.class);
                                         startActivity(intent);
                                     }
                                     @Override

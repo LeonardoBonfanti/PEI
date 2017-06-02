@@ -274,6 +274,9 @@ public class AppOptions extends AppCompatActivity
 
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+        textView.setTextSize(20);
     }
 
     static private String getAbout()

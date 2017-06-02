@@ -23,7 +23,6 @@ public class SplashScreen extends AppCompatActivity implements Runnable
         setContentView(R.layout.splash);
 
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
-
         AppOptions.UiChangeListener(getWindow().getDecorView());
 
         Handler handler = new Handler();

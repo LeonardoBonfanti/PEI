@@ -27,13 +27,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.MainActivity" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaSalas" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TelaSalas" android:screenOrientation="landscape" android:parentActivityName=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

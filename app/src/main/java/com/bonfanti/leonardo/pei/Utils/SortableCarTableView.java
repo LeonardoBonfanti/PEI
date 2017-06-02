@@ -24,19 +24,19 @@ public class SortableCarTableView extends SortableTableView<UserDetails> {
     public SortableCarTableView(final Context context, final AttributeSet attributes, final int styleAttributes) {
         super(context, attributes, styleAttributes);
 
-        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "NOME", "PROFESSOR(A)", "TESTE", "DATA", "RESULTADO");
+        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "PROFESSOR(A)", "NOME", "TESTE", "DATA", "RESULTADO");
         setHeaderAdapter(simpleTableHeaderAdapter);
 
         final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(5);
-        tableColumnWeightModel.setColumnWeight(0, 3);
+        tableColumnWeightModel.setColumnWeight(0, 2);
         tableColumnWeightModel.setColumnWeight(1, 2);
         tableColumnWeightModel.setColumnWeight(2, 1);
         tableColumnWeightModel.setColumnWeight(3, 2);
         tableColumnWeightModel.setColumnWeight(4, 2);
         setColumnModel(tableColumnWeightModel);
 
-        setColumnComparator(0, CarComparators.getCarNameComparator());
-        setColumnComparator(1, CarComparators.getCarProfComparator());
+        setColumnComparator(0, CarComparators.getCarProfComparator());
+        setColumnComparator(1, CarComparators.getCarNameComparator());
         setColumnComparator(2, CarComparators.getCarTestComparator());
         setColumnComparator(3, CarComparators.getCarDataComparator());
         setColumnComparator(4, CarComparators.getCarResultComparator());

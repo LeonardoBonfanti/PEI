@@ -98,15 +98,16 @@ public class TelaTestes extends AppCompatActivity
             }
         });
 
-        int displayWidth = getWindowManager().getDefaultDisplay().getHeight();
+        int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
+        int displayHeight = getWindowManager().getDefaultDisplay().getHeight();
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(displayWidth/3, displayWidth/3);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(displayHeight/3, displayHeight/3);
 
         switch (number)
         {
             case 1: {
-                params.leftMargin = displayWidth/3;
-                params.topMargin = displayWidth/3 - displayWidth/6;
+                params.leftMargin = displayWidth/6;
+                params.topMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
                 TextView myText = (TextView)findViewById(R.id.txtTextOne);
@@ -117,8 +118,9 @@ public class TelaTestes extends AppCompatActivity
 
             case 2: {
 
-                params.leftMargin = displayWidth;
-                params.topMargin = displayWidth/3 - displayWidth/6;
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                params.rightMargin = displayWidth/6;
+                params.topMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
                 TextView myText = (TextView)findViewById(R.id.txtTextTwo);
@@ -128,8 +130,9 @@ public class TelaTestes extends AppCompatActivity
             }
 
             case 3: {
-                params.leftMargin = displayWidth/3;
-                params.topMargin = displayWidth/2 + displayWidth/10;
+                params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                params.leftMargin = displayWidth/6;
+                params.bottomMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
                 TextView myText = (TextView)findViewById(R.id.txtTextThree);
@@ -139,8 +142,10 @@ public class TelaTestes extends AppCompatActivity
             }
 
             case 4: {
-                params.leftMargin = displayWidth;
-                params.topMargin = displayWidth/2 + displayWidth/10;
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                params.rightMargin = displayWidth/6;
+                params.bottomMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
                 TextView myText = (TextView)findViewById(R.id.txtTextFour);
@@ -197,24 +202,24 @@ public class TelaTestes extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.tool_itens, menu);
-
-        final FireApp fireApp= (FireApp) getApplicationContext();
-        int admin = fireApp.getAdmin();
-        int professor = fireApp.getProfessor();
-
-        MenuItem item = menu.findItem(R.id.action_add);
-        item.setVisible(false);
-
-        if(admin != 1)
-        {
-            if(professor == 1)
-                return true;
-
-            item = menu.findItem(R.id.action_resultados);
-            item.setVisible(false);
-        }
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.tool_itens, menu);
+//
+//        final FireApp fireApp= (FireApp) getApplicationContext();
+//        int admin = fireApp.getAdmin();
+//        int professor = fireApp.getProfessor();
+//
+//        MenuItem item = menu.findItem(R.id.action_add);
+//        item.setVisible(false);
+//
+//        if(admin != 1)
+//        {
+//            if(professor == 1)
+//                return true;
+//
+//            item = menu.findItem(R.id.action_resultados);
+//            item.setVisible(false);
+//        }
 
         return true;
     }

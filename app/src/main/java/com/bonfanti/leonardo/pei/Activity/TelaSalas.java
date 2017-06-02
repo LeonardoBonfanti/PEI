@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.support.v7.app.AlertDialog;
@@ -66,6 +67,8 @@ public class TelaSalas extends AppCompatActivity
         getSupportActionBar().setTitle("SALAS");
         myToolbar.setTitleTextColor(Color.WHITE);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         AppOptions.setOverflowButtonColor(myToolbar, Color.WHITE);
 
         controler = 1;
@@ -75,6 +78,13 @@ public class TelaSalas extends AppCompatActivity
         gridView = (GridView) findViewById(R.id.myGrid);
 
         retrieveDatabase();
+        setBackArrowColor();
+    }
+
+    private void setBackArrowColor()
+    {
+        final Drawable upArrow = getResources().getDrawable(R.mipmap.arrow_back_white);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
     private void showInput()
