@@ -93,6 +93,18 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Activity.TelaBlog" android:screenOrientation="landscape" android:parentActivityName=".Activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Activity.TelaPodcast" android:screenOrientation="landscape" android:parentActivityName=".Activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

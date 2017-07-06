@@ -13,6 +13,7 @@ import android.view.View;
 import com.bonfanti.leonardo.pei.Adapters.MenuAdapter;
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
+import com.bonfanti.leonardo.pei.Utils.FireApp;
 import com.bonfanti.leonardo.pei.Utils.MenuInit;
 
 import java.util.ArrayList;
@@ -54,31 +55,51 @@ public class MainActivity extends AppCompatActivity
      */
     private void prepareAlbums()
     {
-        int[] covers = new int[]{
-                R.drawable.icon_about,
-                R.drawable.icon_lista_menu,
-                R.drawable.icon_testes_menu,
-                R.drawable.icon_niveis_menu,
-                R.drawable.icon_podcasts_menu,
-                R.drawable.icon_web_menu};
+        FireApp fireApp= (FireApp) getApplicationContext();
+        int admin = fireApp.getAdmin();
+        int professor = fireApp.getProfessor();
 
-        MenuInit a = new MenuInit("Sobre o Aplicativo", covers[0]);
-        albumList.add(a);
+        if(admin != 1 || professor != 1)
+        {
+            int[] covers = new int[]{
+                    R.drawable.icon_about,
+                    R.drawable.icon_testes_menu};
 
-        a = new MenuInit("Lista de Alunos", covers[1]);
-        albumList.add(a);
+            MenuInit a = new MenuInit("Sobre o Aplicativo", covers[0]);
+            albumList.add(a);
 
-        a = new MenuInit("Realizar Teste", covers[2]);
-        albumList.add(a);
+            a = new MenuInit("Realizar Teste", covers[1]);
+            albumList.add(a);
+        }
+        else
+        {
+            int[] covers = new int[]{
+                    R.drawable.icon_about,
+                    R.drawable.icon_lista_menu,
+                    R.drawable.icon_testes_menu,
+                    R.drawable.icon_niveis_menu,
+                    R.drawable.icon_podcasts_menu,
+                    R.drawable.icon_web_menu};
 
-        a = new MenuInit("Níveis da Escrita", covers[3]);
-        albumList.add(a);
+            MenuInit a = new MenuInit("Sobre o Aplicativo", covers[0]);
+            albumList.add(a);
 
-        a = new MenuInit("Podcast", covers[4]);
-        albumList.add(a);
+            a = new MenuInit("Lista de Alunos", covers[1]);
+            albumList.add(a);
 
-        a = new MenuInit("Página Web", covers[5]);
-        albumList.add(a);
+            a = new MenuInit("Realizar Teste", covers[2]);
+            albumList.add(a);
+
+            a = new MenuInit("Níveis da Escrita", covers[3]);
+            albumList.add(a);
+
+            a = new MenuInit("Podcast", covers[4]);
+            albumList.add(a);
+
+            a = new MenuInit("Página Web", covers[5]);
+            albumList.add(a);
+        }
+
 
         adapter.notifyDataSetChanged();
     }

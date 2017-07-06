@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,6 +35,7 @@ import java.util.List;
 public class TesteOne extends AppCompatActivity implements View.OnClickListener
 {
     ImageView myImage;
+    ImageView imgComfirm;
     Button btnOk;
     Button btnCancel;
     EditText myEdit;
@@ -57,6 +60,10 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         getWindow().getDecorView().setSystemUiVisibility(AppOptions.getUiOptions());
         AppOptions.UiChangeListener(getWindow().getDecorView());
 
+        myImage = (ImageView)findViewById(R.id.imageTest);
+        imgComfirm = (ImageView)findViewById(R.id.imgConfirm);
+        btnOk = (Button)findViewById(R.id.btnOk);
+        myEdit = (EditText)findViewById(R.id.editTextResposta);
         myImage = (ImageView)findViewById(R.id.imageTest);
 
         myEdit = (EditText)findViewById(R.id.editTextResposta);
@@ -95,17 +102,53 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view)
     {
-        btnOk = (Button)findViewById(R.id.btnOk);
-        myEdit = (EditText)findViewById(R.id.editTextResposta);
-        myImage = (ImageView)findViewById(R.id.imageTest);
-
         if(view == btnOk)
         {
+            AlphaAnimation fade_in = new AlphaAnimation(0.0f, 1.0f);
+            final AlphaAnimation fade_out = new AlphaAnimation(1.0f, 0.0f);
+            fade_in.setDuration(800);
+            fade_out.setDuration(800);
+
+            fade_out.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation){
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation)
+                {
+                    imgComfirm.setVisibility(View.INVISIBLE);
+                }
+            });
+
+            fade_in.setAnimationListener(new Animation.AnimationListener()
+            {
+                public void onAnimationStart(Animation arg0) {
+                }
+
+                public void onAnimationRepeat(Animation arg0) {
+                }
+
+                public void onAnimationEnd(Animation arg0)
+                {
+                    imgComfirm.setVisibility(View.VISIBLE);
+                    imgComfirm.startAnimation(fade_out);
+                }
+            });
+
+            imgComfirm.startAnimation(fade_in);
+
             listRespostas.add(myEdit.getText().toString());
             imgHandler(myImage);
-        }
 
-        myEdit.setText("");
+            myEdit.setText("");
+        }
     }
 
     void imgHandler(ImageView myView)
@@ -131,7 +174,8 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
     {
         for(int i=0; i <= listRespostas.size(); i++)
         {
-            switch (i) {
+            switch (i)
+            {
                 case 0: {
                     resultadoConjunto.add(AppOptions.computeLevenshteinDistance(listRespostas.get(i), "APONTADOR"));
                     break;
@@ -245,3 +289,69 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         builder.show();
     }
 }
+
+
+//    private void showButtons()
+//    {
+//        AlphaAnimation fade_in = new AlphaAnimation(0.0f, 1.0f);
+//        final AlphaAnimation fade_out = new AlphaAnimation(1.0f, 0.0f);
+//        fade_in.setDuration(500);
+//        fade_out.setDuration(500);
+//
+//        fade_in.setAnimationListener(new Animation.AnimationListener()
+//        {
+//            public void onAnimationStart(Animation arg0)
+//            {
+//            }
+//            public void onAnimationRepeat(Animation arg0)
+//            {
+//            }
+//
+//            public void onAnimationEnd(Animation arg0)
+//            {
+//                playView.setVisibility(View.VISIBLE);
+//                volumeView.setVisibility(View.VISIBLE);
+//                sbVolume.setVisibility(View.VISIBLE);
+//            }
+//        });
+//        playView.startAnimation(fade_in);
+//        volumeView.startAnimation(fade_in);
+//        sbVolume.startAnimation(fade_in);
+//
+//        fade_out.setAnimationListener(new Animation.AnimationListener() {
+//            @Override
+//            public void onAnimationStart(Animation animation) {
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//                myText.setVisibility(View.INVISIBLE);
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//            }
+//        });
+//        myText.startAnimation(fade_out);
+//
+//        sbVolume.getProgressDrawable().setColorFilter(Color.parseColor("#B24242"), PorterDuff.Mode.SRC_IN);
+//        sbVolume.getThumb().setColorFilter(Color.parseColor("#B24242"), PorterDuff.Mode.SRC_IN);
+//
+//        sbVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//                volumeView.updateVolumeValue(i);
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
+//        configVolume(sbVolume);
+//    }
