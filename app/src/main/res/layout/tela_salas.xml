@@ -16,12 +16,13 @@
         android:id="@+id/myGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:horizontalSpacing="100dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="120dp"
+        android:horizontalSpacing="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="30dp"
         android:layout_marginBottom="50dp"
         android:numColumns="3"
-        android:verticalSpacing="200dp">
+        android:verticalSpacing="100dp">
 
     </GridView>
 

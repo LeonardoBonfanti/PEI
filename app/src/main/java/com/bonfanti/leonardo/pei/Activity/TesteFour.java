@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Usuário on 4/10/2017.
  */
@@ -71,6 +74,11 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     void setImageTest(Button myView)
     {
         int displayWidth = getWindowManager().getDefaultDisplay().getHeight();
@@ -98,6 +106,8 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
             MediaPlayer mp = MediaPlayer.create(this, R.raw.sound_teste4);
             mp.start();
         }
+        else
+            myEdit.setText("");
     }
 
     void verificaNivel()
@@ -118,12 +128,15 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
         String key = fireApp.getUserKey();
         String sala = fireApp.getUserSala();
 
-        AppOptions.saveData(result, sala, key, "QUATRO", databaseReference);
+        List<String> temp = new ArrayList<>();
+        temp.add(resposta);
 
-        createPopUpBeforeEnding();
+        AppOptions.saveData(result, sala, key, "QUATRO", databaseReference, temp);
+
+        createPopUpBeforeEnding(fireApp);
     }
 
-    private void createPopUpBeforeEnding()
+    private void createPopUpBeforeEnding(final FireApp fireApp)
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("REALIZAR OUTRO TESTE?");
@@ -134,8 +147,8 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                Intent intent = new Intent(TesteFour.this, TelaTestes.class);
-                startActivity(intent);
+                fireApp.setTests("4");
+                finish();
             }
         });
         builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -153,6 +166,7 @@ public class TesteFour extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+        builder.setCancelable(false);
         builder.show();
     }
 }

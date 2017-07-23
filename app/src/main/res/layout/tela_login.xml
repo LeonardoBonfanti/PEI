@@ -5,6 +5,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar_testes"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#498467"
+        android:elevation="4dp">
+
+    </android.support.v7.widget.Toolbar>
+
     <ImageView
         android:id="@+id/imgLogoLogin"
         android:layout_width="400px"
@@ -46,8 +55,8 @@
         android:layout_height="wrap_content"
         android:text="Ok"
         android:textSize="20sp"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/editTextLoginPass"
+        android:layout_marginBottom="100dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

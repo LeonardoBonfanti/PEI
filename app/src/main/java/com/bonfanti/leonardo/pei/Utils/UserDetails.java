@@ -1,5 +1,7 @@
 package com.bonfanti.leonardo.pei.Utils;
 
+import java.util.ArrayList;
+
 /**
  * Created by Usuário on 4/26/2017.
  */
@@ -11,14 +13,16 @@ public class UserDetails
     private String test;
     private String data;
     private String result;
+    private ArrayList<ArrayList> respostas;
 
-    public UserDetails(final String prof, final String name, final String test, final String data, final String result)
+    public UserDetails(final String prof, final String name, final String test, final String data, final String result, final ArrayList<ArrayList> respostas)
     {
         this.name = name;
         this.prof = prof;
         this.test = test;
         this.data = data;
         this.result = result;
+        this.respostas = respostas;
     }
 
     public String getName() {
@@ -55,5 +59,13 @@ public class UserDetails
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public ArrayList<ArrayList> getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(ArrayList<ArrayList> respostas) {
+        this.respostas = respostas;
     }
 }

@@ -83,6 +83,11 @@ public class TesteTwo extends AppCompatActivity implements View.OnClickListener
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     void setImageTest(Button myView)
     {
         int displayWidth = getWindowManager().getDefaultDisplay().getHeight();
@@ -198,14 +203,14 @@ public class TesteTwo extends AppCompatActivity implements View.OnClickListener
         String key = fireApp.getUserKey();
         String sala = fireApp.getUserSala();
 
-        AppOptions.saveData(result, sala, key, "DOIS", databaseReference);
+        AppOptions.saveData(result, sala, key, "DOIS", databaseReference, listRespostas);
 
         validado = true;
 
-        createPopUpBeforeEnding();
+        createPopUpBeforeEnding(fireApp);
     }
 
-    private void createPopUpBeforeEnding()
+    private void createPopUpBeforeEnding(final FireApp fireApp)
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("REALIZAR OUTRO TESTE?");
@@ -216,8 +221,8 @@ public class TesteTwo extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                Intent intent = new Intent(TesteTwo.this, TelaTestes.class);
-                startActivity(intent);
+                fireApp.setTests("2");
+                finish();
             }
         });
         builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -235,6 +240,7 @@ public class TesteTwo extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+        builder.setCancelable(false);
         builder.show();
     }
 }

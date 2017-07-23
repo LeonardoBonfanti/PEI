@@ -44,7 +44,7 @@ public class TelaPodcast extends AppCompatActivity
         myToolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(myToolbar);
 
-        getSupportActionBar().setTitle("PODCASTS");
+        getSupportActionBar().setTitle("YOUTUBE");
         myToolbar.setTitleTextColor(Color.WHITE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

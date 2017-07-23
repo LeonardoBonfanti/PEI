@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
 import com.bonfanti.leonardo.pei.Utils.FireApp;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 /**
  * Created by Usuário on 3/8/2017.
@@ -71,6 +74,81 @@ public class TelaTestes extends AppCompatActivity
         setBackArrowColor();
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        verifyTestDone();
+    }
+
+    private void verifyTestDone()
+    {
+        final FireApp fireApp= (FireApp) getApplicationContext();
+        ArrayList<String> tests = fireApp.getTests();
+
+        if(tests == null)
+            return;
+
+        for(int i = 0; i < tests.size(); i++)
+        {
+            switch(tests.get(i))
+            {
+                case "1":
+                {
+                    ImageView img = (ImageView)findViewById(R.id.imgTestDone1);
+                    img.setVisibility(View.VISIBLE);
+                    TextView txt = (TextView)findViewById(R.id.txtTextOne);
+                    txt.setVisibility(View.INVISIBLE);
+
+                    myCard.setCardBackgroundColor(Color.parseColor("#4BFF61"));
+                    myCard.setClickable(false);
+
+                    break;
+                }
+
+                case "2":
+                {
+                    ImageView img = (ImageView)findViewById(R.id.imgTestDone2);
+                    img.setVisibility(View.VISIBLE);
+                    TextView txt = (TextView)findViewById(R.id.txtTextTwo);
+                    txt.setVisibility(View.INVISIBLE);
+
+                    myCard2.setCardBackgroundColor(Color.parseColor("#4BFF61"));
+                    myCard2.setClickable(false);
+
+                    break;
+                }
+
+                case "3":
+                {
+                    ImageView img = (ImageView)findViewById(R.id.imgTestDone3);
+                    img.setVisibility(View.VISIBLE);
+                    TextView txt = (TextView)findViewById(R.id.txtTextThree);
+                    txt.setVisibility(View.INVISIBLE);
+
+                    myCard3.setCardBackgroundColor(Color.parseColor("#4BFF61"));
+                    myCard3.setClickable(false);
+
+                    break;
+                }
+
+                case "4":
+                {
+                    ImageView img = (ImageView)findViewById(R.id.imgTestDone4);
+                    img.setVisibility(View.VISIBLE);
+                    TextView txt = (TextView)findViewById(R.id.txtTextFour);
+                    txt.setVisibility(View.INVISIBLE);
+
+                    myCard4.setCardBackgroundColor(Color.parseColor("#4BFF61"));
+                    myCard4.setClickable(false);
+
+                    break;
+                }
+            }
+        }
+    }
+
     void setCard(CardView cardView, int number)
     {
         cardView.setAlpha((float) 0.7);
@@ -101,12 +179,12 @@ public class TelaTestes extends AppCompatActivity
         int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
         int displayHeight = getWindowManager().getDefaultDisplay().getHeight();
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(displayHeight/3, displayHeight/3);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(displayHeight/4, displayHeight/4);
 
         switch (number)
         {
             case 1: {
-                params.leftMargin = displayWidth/6;
+                params.leftMargin = displayWidth/12;
                 params.topMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
@@ -119,7 +197,7 @@ public class TelaTestes extends AppCompatActivity
             case 2: {
 
                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                params.rightMargin = displayWidth/6;
+                params.rightMargin = displayWidth/12;
                 params.topMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
@@ -131,7 +209,7 @@ public class TelaTestes extends AppCompatActivity
 
             case 3: {
                 params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                params.leftMargin = displayWidth/6;
+                params.leftMargin = displayWidth/12;
                 params.bottomMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
@@ -144,7 +222,7 @@ public class TelaTestes extends AppCompatActivity
             case 4: {
                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                params.rightMargin = displayWidth/6;
+                params.rightMargin = displayWidth/12;
                 params.bottomMargin = displayHeight/6;
                 cardView.setLayoutParams(params);
 
@@ -169,12 +247,6 @@ public class TelaTestes extends AppCompatActivity
 
         switch (item.getItemId())
         {
-            case R.id.action_about:
-
-                AppOptions.createPopUpAbout(this);
-
-                return true;
-
             case R.id.action_resultados:
 
                 intent = new Intent(this, TelaResultados.class);

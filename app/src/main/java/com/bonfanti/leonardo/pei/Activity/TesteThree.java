@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Usuário on 4/11/2017.
@@ -68,6 +69,11 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
         AppOptions.onTapOutsideBehaviour(relativeLayout, this);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
     void setImageTest()
@@ -141,12 +147,15 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
         String key = fireApp.getUserKey();
         String sala = fireApp.getUserSala();
 
-        AppOptions.saveData(result, sala, key, "TRÊS", databaseReference);
+        List<String> temp = new ArrayList<>();
+        temp.add(resposta);
 
-        createPopUpBeforeEnding();
+        AppOptions.saveData(result, sala, key, "TRÊS", databaseReference, temp);
+
+        createPopUpBeforeEnding(fireApp);
     }
 
-    private void createPopUpBeforeEnding()
+    private void createPopUpBeforeEnding(final FireApp fireApp)
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("REALIZAR OUTRO TESTE?");
@@ -157,8 +166,8 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                Intent intent = new Intent(TesteThree.this, TelaTestes.class);
-                startActivity(intent);
+                fireApp.setTests("3");
+                finish();
             }
         });
         builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -176,6 +185,7 @@ public class TesteThree extends AppCompatActivity implements View.OnClickListene
             }
         });
 
+        builder.setCancelable(false);
         builder.show();
     }
 }

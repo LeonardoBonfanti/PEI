@@ -98,6 +98,7 @@ public class TelaResultados extends AppCompatActivity
                             String dataFormated = "";
                             String teste = "";
                             String result = "";
+                            ArrayList<ArrayList> respostas = new ArrayList<>();
 
                             for (DataSnapshot child2 : childDataSnapshot.child("Sala").child(prof).getChildren())
                             {
@@ -111,18 +112,33 @@ public class TelaResultados extends AppCompatActivity
                                 for (DataSnapshot child3 : childDataSnapshot.child("Sala").child(prof).child(data).getChildren())
                                 {
                                     teste = child3.getKey().toString();
-                                    result = child3.getValue().toString();
+                                    result = child3.child("Resultado").getValue().toString();
+
+                                    respostas = new ArrayList<>();
+
+                                    for (DataSnapshot child4 : child3.getChildren())                                    {
+
+                                        ArrayList<String> aux = new ArrayList<String>();
+
+                                        if(!child4.getKey().equals("Resultado"))
+                                        {
+                                            aux.add(child4.getKey() + ":");
+                                            aux.add(" " + child4.getValue().toString());
+
+                                            respostas.add(aux);
+                                        }
+                                    }
 
                                     final UserDetails row;
 
                                     if(admin == 1)
                                     {
-                                        row = new UserDetails(prof, nome, teste, dataFormated, result);
+                                        row = new UserDetails(prof, nome, teste, dataFormated, result, respostas);
                                         userDetailses.add(row);
                                     }
                                     else if(profName.equals(prof))
                                     {
-                                        row = new UserDetails(prof, nome, teste, dataFormated, result);
+                                        row = new UserDetails(prof, nome, teste, dataFormated, result, respostas);
                                         userDetailses.add(row);
                                     }
                                 }
@@ -157,12 +173,6 @@ public class TelaResultados extends AppCompatActivity
 
         switch (item.getItemId())
         {
-            case R.id.action_about:
-
-                AppOptions.createPopUpAbout(this);
-
-                return true;
-
             case R.id.action_logout:
 
                 firebaseAuth.signOut();

@@ -116,38 +116,90 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder>
                 mContext.startActivity(intent);
                 break;
             }
-            case "Realizar Teste": {
+            case "Salas de Teste": {
                 Intent intent = new Intent(mContext, TelaSalas.class);
                 mContext.startActivity(intent);
                 break;
             }
             case "Níveis da Escrita": {
 
+                String mount = "";
+
+                mount = "Nível 1 - Escrever é reproduzir os traços típicos da escrita\n\n";
+                mount += "Escrever é reproduzir os traços típicos da escrita que a criança identifica como a forma básica da mesma.\n\n";
+                mount += "Se esta forma básica é a escrita de imprensa, teremos grafismos separados entre si, compostos de linhas curvas\n";
+                mount += "e repostas ou combinações entre ambas. Se a forma básica é a cursiva, teremos grafismos ligados entre si\n";
+                mount += "com uma linha ondulada como forma de base, na qual se inserem curvas fechadas ou semifechadas.\n\n";
+                mount += "A criança espera que a escrita dos nomes de pessoas seja proporcional ao tamanho (ou idade) dessa pessoa,\n";
+                mount += "e não ao comprimento do nome correspondente. Estes dados e outros recolhidos nos mais diversos contextos\n";
+                mount += "evidência uma tendência da criança refletir na escrita algumas das características do objeto. (p.194)\n\n";
+                mount += "A correspondência se estabelece entre aspectos quantificáveis do objeto e aspectos quantificáveis\n";
+                mount += "da escrita, e não entre um aspecto figural do objeto e aspecto figural do escrito. Isto é, não se buscam\n";
+                mount += "letras com ângulos marcados para escrever “casa”, ou letras redondas para escrever “bola”, mas sim um\n";
+                mount += "maior número de grafias, grafias maiores ou maior comprimento do traçado total se o objeto é maior,\n";
+                mount += "mais comprido, tem mais idade ou há maior número de objetos referidos. (p.198)\n\n";
+                mount += "Referencial teórico - Psicogênese da Língua Escrita, Emilia Ferreiro e Ana Teberosky, 1999, Ed. Artmed\n\n";
+
+                mount += "Nível 2 - Para ler coisas diferentes, deve haver diferença objetiva nas escritas\n\n";
+                mount += "Para poder ler coisas diferentes, deve haver uma diferença objetiva nas escritas. Segue-se com a hipótese\n";
+                mount += "de que faz falta uma certa quantidade mínima de grafismos para escrever algo e com a hipótese da variedade\n";
+                mount += "de grafismos. (p. 202)\n\nA combinação utiliza duas razões: primeiro começa sempre pela mesma letra; segundo\n";
+                mount += "não tem nenhum método próximo para comparar entre si que não sejam espacialmente próximas (em outras palavras,\n";
+                mount += "para saber quais das combinações possíveis já foram realizadas). Porém, a intenção de usar as permutas na ordem\n";
+                mount += "linear para expressar diferenças de significado, mantendo constante a quantidade e a exigência de variedade, é\n";
+                mount += "indubitável. (p. 204) (ex de sequência)\n\nOutra possibilidade é explorar a permuta de foram linear, com um\n";
+                mount += "registro de formas gráficas extremamente limitado. (p. 204) (ex de sequência)\n\n";
+                mount += "Tratando de resolver os problemas que a escrita lhe apresenta, as crianças enfrentam, necessariamente, problemas\n";
+                mount += "gerais de classificação e de ordenação. Descobrir que duas ordens diferentes dos mesmos elementos possam dar\n";
+                mount += "lugar a duas totalidades diferentes é uma descoberta que terá enormes consequências para o desenvolvimento\n";
+                mount += "cognitivo nos mais variados domínios em que se exerça a atividade de pensar.\n\n";
+                mount += "No curso deste desenvolvimento, a aquisição de formas fixas está sujeita a contingências culturais e pessoais,\n";
+                mount += "sendo o nome próprio uma das mais importantes. Para poder ler coisas diferentes, deve haver uma diferença objetiva\n";
+                mount += "nas escritas. Segue-se com a hipótese de que faz falta uma certa quantidade mínima de grafismos para escrever algo\n";
+                mount += "e com a hipótese da variedade de grafismos. (p. 202)\n\n";
+                mount += "Neste nível a criança trata de respeitar duas exigências, a seu ver básicas, que são a quantidade de grafias\n";
+                mount += "(nunca menor que 3) e a variedade de grafias.\n\n";
+                mount += "Referencial teórico - Psicogênese da Língua Escrita, Emilia Ferreiro e Ana Teberosky, 1999, Ed. Artmed\n\n";
+
+                mount += "Nível 3 - Atribuir um valor sonoro a cada uma das letras que compõem uma escrita\n\n";
+                mount += "Nesta tentativa, a criança passa por um período da maior importância evolutiva: a cada letra vale por uma sílaba.\n";
+                mount += "Neste nível a criança dá um salto qualitativo com respeito com respeito aos níveis precedentes. É o surgimento do\n";
+                mount += "que chamaremos a hipótese silábicas. Com esta hipótese, a criança dá um salto qualitativo com respeito aos níveis\n";
+                mount += "precedentes. A mudança qualitativa consiste em que: a) se supera a etapa de uma correspondência global entre a\n";
+                mount += "forma escrita e a expressão oral atribuída, para passar a uma correspondência entre partes do texto (cada letra)\n";
+                mount += "e partes da expressão oral (recorte silábico do nome); mas além disso, b) pela primeira vez a criança trabalha\n";
+                mount += "claramente com a hipótese de que a escrita representa partes sonoras da fala. (p.209)\n\n";
+                mount += "Quando a criança começa a trabalhar com a hipótese silábica, duas das características importantes da escrita\n";
+                mount += "anterior podem desaparecer momentaneamente: as exigências de variedade e de quantidade mínima de caracteres.\n";
+                mount += "Assim, é possível ver aparecer novamente caracteres idênticos (por certo, quando ainda não há valor sonoro\n";
+                mount += "estável para cada um deles) no momento em que a criança demasiado ocupada em efetuar um recorte silábico da\n";
+                mount += "palavra, não consegue atender simultaneamente em ambas as exigências. Porém, uma vez já bem instalada a hipótese\n";
+                mount += "silábica, a exigência de variedade reaparece.\n\n";
+                mount += "No que diz respeito ao conflito entre a quantidade mínima de caracteres e a hipótese silábica, o problema é ainda\n";
+                mount += "mais interessante, em virtude de suas consequências. Trabalhando com a hipótese silábica, a criança está obrigada a\n";
+                mount += "escrever somente duas grafias para as palavras dissílabas (o que, em muitos casos, está abaixo da quantidade mínima\n";
+                mount += "que lhe parece necessária), e o problema é ainda mais grave quando se trata de substantivos monossílabos (pouco\n";
+                mount += "frequente em espanhol, ainda que “sol” e “sal” constituam conhecidos exemplos das palavras iniciais na aprendizagem\n";
+                mount += "tradicional).\n\nReferencial teórico - Psicogênese da Língua Escrita, Emilia Ferreiro e Ana Teberosky, 1999, Ed. Artmed\n\n";
+
+                mount += "Nível 4 - Passagem da hipótese silábica para a alfabética\n\n";
+                mount += "A criança abandona a hipótese silábica e descobre a necessidade de fazer uma análise que vá \"mais além\" da sílaba\n";
+                mount += "pelo conflito entre a hipótese silábica e a exigência de quantidade mínima de gramas (ambas exigências puramente\n";
+                mount += "internas, no sentido de serem hipóteses originais da criança) e o conflito entre as formas gráficas  que o meio lhe\n";
+                mount += "propõe e a leitura dessas formas em termos de hipótese silábica (conflito entre uma exigência interna e uma realidade\n";
+                mount += "exterior ao próprio sujeito).\n\n";
+                mount += "Referencial teórico - Psicogênese da Língua Escrita, Emilia Ferreiro e Ana Teberosky, 1999, Ed. Artmed\n";
+
                 AlertDialog dialog = new AlertDialog.Builder(mContext)
-                        .setTitle("Hipóteses (USAREI AS PALAVRAS CADERNO E LÁPIS COMO MODELO)")
-                        .setMessage("Pré-silábico \n" +
-                                "1. Pré-silábico, sem variações quantitativas ou qualitativas dentro da palavra e entre as palavras. O aluno diferencia desenhos (que não podem ser lidos) de “escritos” (que podem ser lidos), mesmo que sejam compostos por grafismos, símbolos ou letras. (ESCREVE COM QUALQUER TIPO DE LETRA SEM SE PREOCUPAR COM O TAMANHO DA PALAVRA OU SONORIDADE DAS LETRAS – MERTSTEDRGHAS (CADERNO) MERTSTEDRGHAS (LÁPIS) )\n" +
-                                "A leitura que realiza do escrito é sempre global, com o dedo deslizando por todo o registro escrito. \n" +
-                                "2. Pré-silábico com exigência mínima de letras ou símbolos, com variação de caracteres dentro da palavra, mas não entre as palavras. (FAZ O MESMO TIPO DE ESCRITA INDEPENDENTE SE É PARA CADERNO OU LÁPIS, MAS PREOCUPA-SE COM O TAMANHO – MERSCT(CADERNO) MERS(LÁPIS))\n" +
-                                "A leitura do escrito é sempre global, com o dedo deslizando por todo o registro escrito. \n" +
-                                "3. Pré-silábico com exigência mínima de letras ou símbolos, com variação de caracteres dentro da palavra e entre as palavras (variação qualitativa intrafigural e interfigural, ou seja,quantidade e variedade de letras). Neste nível, o aluno considera que coisas diferentes devem ser escritas de forma diferente. (ADNEO (CADERNO) API (LÁPIS)\n" +
-                                "A leitura do escrito continua global, com o dedo deslizando por todo o registro escrito. \n" +
-                                "Silábico \n" +
-                                "1. Silábico com letras não pertinentes ou sem valor sonoro convencional. Cada letra ou símbolo corresponde a uma sílaba falada, mas o que se escreve ainda não tem correspondência com o som convencional daquela sílaba. A leitura é silabada. (MANO (CADERNO) AP (LÁPIS))\n" +
-                                "2. Silábico com vogais pertinentes ou com valor sonoro convencional de vogais. Cada letra corresponde a uma sílaba falada e o que se escreve tem correspondência com o som convencional daquela sílaba, representada pela vogal. A leitura é silabada. (AEO (CADERNO) AI (LAPIS))\n" +
-                                "3. Silábico com consoantes pertinentes ou com valor sonoro convencional de consoantes. Cada letra corresponde a uma sílaba falada e o que se escreve tem correspondência com o som convencional daquela sílaba, representada pela consoante. A leitura é silabada. (KDNO (CADERNO) LAIS (LÁPIS)\n" +
-                                "4. Silábico com vogais e consoantes pertinentes. Cada letra corresponde a uma sílaba falada e o que se escreve tem correspondência com o som convencional daquela sílaba, representada ora pela vogal, ora pela consoante. A leitura é silabada. (CADNO (CADERNO) LAPI (LÁPIS) \n" +
-                                "Silábico-alfabética \n" +
-                                "1. Este nível marca a transição do aluno da hipótese silábica para a hipótese alfabética. Ora ele escreve atribuindo a cada sílaba uma letra, ora representando as unidades sonoras menores, os fonemas. (KDENO; CADNO; CADENO (CADERNO) LAIS; APIS; LAPS (LAPIS))\n" +
-                                "Alfabético \n" +
-                                "1. Alfabético inicial Neste estágio, o aluno já compreendeu o sistema de escrita, entendendo que cada um dos caracteres da palavra corresponde a um valor sonoro menor do que a sílaba. Agora, falta-lhe dominar as convenções ortográficas. CADENO (CADERNO) LAPISS (LAPIS)\n" +
-                                "2. Alfabético. Neste estágio, o aluno já compreendeu o sistema de escrita, entendendo que cada um dos caracteres da palavra corresponde a um valor sonoro menor do que a sílaba e também domina as convenções ortográficas. (CADERNO; LAPIS)\n")
+                        .setTitle("Hipóteses")
+                        .setMessage(mount)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         })
                         .show();
+
                 TextView textView = (TextView) dialog.findViewById(android.R.id.message);
                 textView.setScroller(new Scroller(mContext));
                 textView.setVerticalScrollBarEnabled(true);
@@ -155,7 +207,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder>
 
                 break;
             }
-            case "Podcast": {
+            case "YouTube": {
                 Intent intent = new Intent(mContext, TelaPodcast.class);
                 mContext.startActivity(intent);
                 break;

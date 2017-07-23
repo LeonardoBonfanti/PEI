@@ -3,9 +3,11 @@ package com.bonfanti.leonardo.pei.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
@@ -49,6 +51,8 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
 
+    Toolbar myToolbar;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,24 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
         AppOptions.onTapOutsideBehaviour(relativeLayout, this);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar_testes);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("INÍCIO");
+        myToolbar.setTitleTextColor(Color.WHITE);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        AppOptions.setOverflowButtonColor(myToolbar, Color.WHITE);
+
+        setBackArrowColor();
+    }
+
+    private void setBackArrowColor()
+    {
+        final Drawable upArrow = getResources().getDrawable(R.mipmap.arrow_back_white);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
     @Override
@@ -109,8 +131,9 @@ public class TelaLogin extends AppCompatActivity implements View.OnClickListener
         AppOptions.setLocation(myImage, getWindowManager(), params, - displayWidth/6, - displayWidth/3);
 
         params = new RelativeLayout.LayoutParams(displayWidth/4,displayWidth/14);
-        params.addRule(RelativeLayout.BELOW, R.id.editTextLoginPass);
         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        params.setMargins(0, 0, 0, 100);
         btnOk.setLayoutParams(params);
     }
 

@@ -3,9 +3,11 @@ package com.bonfanti.leonardo.pei.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -42,6 +44,8 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
 
+    Toolbar myToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -71,8 +75,25 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
         configLayout();
 
         AppOptions.onTapOutsideBehaviour(relativeLayout, this);
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar_testes);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("TESTES");
+        myToolbar.setTitleTextColor(Color.WHITE);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        AppOptions.setOverflowButtonColor(myToolbar, Color.WHITE);
+
+        setBackArrowColor();
+    }
+
+    private void setBackArrowColor()
+    {
+        final Drawable upArrow = getResources().getDrawable(R.mipmap.arrow_back_white);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 
     void configLayout()
@@ -83,7 +104,11 @@ public class TelaCadastro extends AppCompatActivity implements View.OnClickListe
         AppOptions.setLocation(myImage, getWindowManager(), params, - displayWidth/6, - displayWidth/3);
 
         params = new RelativeLayout.LayoutParams(displayWidth/4,displayWidth/14);
-        AppOptions.setLocation(btnOk, getWindowManager(), params, -displayWidth/8, displayWidth/3 + displayWidth/100);
+        params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        params.setMargins(0, 0, 0, 100);
+        btnOk.setLayoutParams(params);
+        //AppOptions.setLocation(btnOk, getWindowManager(), params, -displayWidth/8, displayWidth/3 + displayWidth/100);
     }
 
     @Override

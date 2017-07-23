@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
 import com.bonfanti.leonardo.pei.Utils.UserDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.codecrafters.tableview.TableView;
@@ -67,6 +68,9 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<UserDeta
                     }
                 });
                 break;
+            case 5:
+                renderedView = renderCatResp(userDetails);
+                break;
         }
 
         return renderedView;
@@ -117,6 +121,33 @@ public class CarTableDataAdapter extends LongPressAwareTableDataAdapter<UserDeta
 
     private View renderCatResult(final UserDetails userDetails) {
         return renderString(userDetails.getResult());
+    }
+
+    private View renderCatResp(final UserDetails userDetails)
+    {
+        ArrayList<ArrayList> arrayList = userDetails.getRespostas();
+
+        String txt = "";
+        int row = 0;
+
+        for(int i = 0; i < arrayList.size(); i++)
+        {
+            ArrayList<String> respostas = arrayList.get(i);
+
+            for(int j = 0; j < respostas.size(); j++)
+            {
+                txt += respostas.get(j);
+                row++;
+
+                if(row == 2)
+                {
+                    txt += "\n";
+                    row = 0;
+                }
+            }
+        }
+
+        return renderString(txt);
     }
 
     private View renderString(final String value)

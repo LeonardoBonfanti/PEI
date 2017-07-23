@@ -14,92 +14,98 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:name=".Utils.FireApp">
 
-        <activity android:name=".Activity.SplashScreen" android:screenOrientation="landscape">
+        <activity android:name=".Activity.SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaLoginCadastro" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TelaLoginCadastro" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.MainActivity" android:screenOrientation="landscape">
+        <activity android:name=".Activity.MainActivity" android:screenOrientation="portrait" android:parentActivityName=".Activity.TelaLoginCadastro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaSalas" android:screenOrientation="landscape" android:parentActivityName=".Activity.MainActivity">
+        <activity android:name=".Activity.TelaSalas" android:screenOrientation="portrait" android:parentActivityName=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaTestes" android:screenOrientation="landscape" android:parentActivityName=".Activity.TelaSalas">
+        <activity android:name=".Activity.TelaTestes" android:screenOrientation="portrait" android:parentActivityName=".Activity.TelaSalas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TesteOne" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TesteOne" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TesteTwo" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TesteTwo" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TesteThree" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TesteThree" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TesteFour" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TesteFour" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaResultados" android:screenOrientation="landscape" android:parentActivityName=".Activity.TelaSalas">
+        <activity android:name=".Activity.TelaResultados" android:screenOrientation="portrait" android:parentActivityName=".Activity.TelaSalas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaCadastro" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TelaCadastro" android:screenOrientation="portrait" android:parentActivityName=".Activity.TelaLoginCadastro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaSenhaGerada" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TelaSenhaGerada" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaLogin" android:screenOrientation="landscape">
+        <activity android:name=".Activity.TelaLogin" android:screenOrientation="portrait" android:parentActivityName=".Activity.TelaLoginCadastro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaBlog" android:screenOrientation="landscape" android:parentActivityName=".Activity.MainActivity">
+        <activity android:name=".Activity.TelaBlog" android:screenOrientation="portrait" android:parentActivityName=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.TelaPodcast" android:screenOrientation="landscape" android:parentActivityName=".Activity.MainActivity">
+        <activity android:name=".Activity.TelaPodcast" android:screenOrientation="portrait" android:parentActivityName=".Activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Activity.TelaAlunos" android:screenOrientation="portrait" android:parentActivityName=".Activity.TelaSalas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

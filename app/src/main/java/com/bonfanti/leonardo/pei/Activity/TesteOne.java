@@ -91,6 +91,11 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
     void setImageTest(ImageView myView)
     {
         int displayWidth = getWindowManager().getDefaultDisplay().getHeight();
@@ -149,6 +154,8 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
 
             myEdit.setText("");
         }
+
+        myEdit.setText("");
     }
 
     void imgHandler(ImageView myView)
@@ -247,14 +254,14 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
         String key = fireApp.getUserKey();
         String sala = fireApp.getUserSala();
 
-        AppOptions.saveData(result, sala, key, "UM", databaseReference);
+        AppOptions.saveData(result, sala, key, "UM", databaseReference, listRespostas);
 
         validado = true;
 
-       createPopUpBeforeEnding();
+       createPopUpBeforeEnding(fireApp);
     }
 
-    private void createPopUpBeforeEnding()
+    private void createPopUpBeforeEnding(final FireApp fireApp)
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("REALIZAR OUTRO TESTE?");
@@ -266,8 +273,11 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-                Intent intent = new Intent(TesteOne.this, TelaTestes.class);
-                startActivity(intent);
+                fireApp.setTests("1");
+                finish();
+                //Intent intent = new Intent(TesteOne.this, TelaTestes.class);
+                //intent.putExtra("REALIZADO", "1");
+                //startActivity(intent);
             }
         });
 
@@ -286,72 +296,7 @@ public class TesteOne extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+        builder.setCancelable(false);
         builder.show();
     }
 }
-
-
-//    private void showButtons()
-//    {
-//        AlphaAnimation fade_in = new AlphaAnimation(0.0f, 1.0f);
-//        final AlphaAnimation fade_out = new AlphaAnimation(1.0f, 0.0f);
-//        fade_in.setDuration(500);
-//        fade_out.setDuration(500);
-//
-//        fade_in.setAnimationListener(new Animation.AnimationListener()
-//        {
-//            public void onAnimationStart(Animation arg0)
-//            {
-//            }
-//            public void onAnimationRepeat(Animation arg0)
-//            {
-//            }
-//
-//            public void onAnimationEnd(Animation arg0)
-//            {
-//                playView.setVisibility(View.VISIBLE);
-//                volumeView.setVisibility(View.VISIBLE);
-//                sbVolume.setVisibility(View.VISIBLE);
-//            }
-//        });
-//        playView.startAnimation(fade_in);
-//        volumeView.startAnimation(fade_in);
-//        sbVolume.startAnimation(fade_in);
-//
-//        fade_out.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                myText.setVisibility(View.INVISIBLE);
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//            }
-//        });
-//        myText.startAnimation(fade_out);
-//
-//        sbVolume.getProgressDrawable().setColorFilter(Color.parseColor("#B24242"), PorterDuff.Mode.SRC_IN);
-//        sbVolume.getThumb().setColorFilter(Color.parseColor("#B24242"), PorterDuff.Mode.SRC_IN);
-//
-//        sbVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-//                volumeView.updateVolumeValue(i);
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
-//        configVolume(sbVolume);
-//    }

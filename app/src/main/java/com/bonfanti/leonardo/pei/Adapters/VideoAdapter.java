@@ -29,7 +29,8 @@ public class VideoAdapter extends ArrayAdapter<String>
     HashMap<String, String> videos;
     private LayoutInflater layoutInflater;
 
-    public VideoAdapter(Context context, HashMap<String, String> videos){
+    public VideoAdapter(Context context, HashMap<String, String> videos)
+    {
         super(context, R.layout.custom_video);
 
         this.context = context;

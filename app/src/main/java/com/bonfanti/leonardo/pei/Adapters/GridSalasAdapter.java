@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bonfanti.leonardo.pei.Activity.TelaAlunos;
 import com.bonfanti.leonardo.pei.Activity.TelaTestes;
 import com.bonfanti.leonardo.pei.R;
 import com.bonfanti.leonardo.pei.Utils.AppOptions;
@@ -29,10 +30,10 @@ import java.util.ArrayList;
 public class GridSalasAdapter extends ArrayAdapter<String[]>
 {
     Context mContext;
-    ArrayList<String> data;
+    ArrayList<ArrayList> data;
     DatabaseReference databaseReference;
 
-    public GridSalasAdapter(Context context, ArrayList<String> temp) {
+    public GridSalasAdapter(Context context, ArrayList<ArrayList> temp) {
         super(context, R.layout.custom_button_salas);
         mContext = context;
         this.data = temp;
@@ -47,34 +48,44 @@ public class GridSalasAdapter extends ArrayAdapter<String[]>
 
         LayoutInflater layoutInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         row = layoutInflater.inflate(R.layout.custom_button_salas, parent,false);
-        holder.button = (Button) row.findViewById(R.id.btnSala);
-        holder.textView = (TextView) row.findViewById(R.id.txtProfessor);
+        holder.sala = (Button) row.findViewById(R.id.btnSala);
+        holder.professor = (TextView) row.findViewById(R.id.txtProfessor);
         holder.delete = (Button) row.findViewById(R.id.btnDeleteSala);
+        holder.edit = (Button) row.findViewById(R.id.btnEditClass);
 
         final FireApp fireApp= (FireApp) mContext.getApplicationContext();
         int admin = fireApp.getAdmin();
+        int prof = fireApp.getProfessor();
 
         if(admin != 1)
         {
             holder.delete.setVisibility(View.INVISIBLE);
             holder.delete.setEnabled(false);
         }
+        if(prof != 1)
+        {
+            holder.edit.setVisibility(View.INVISIBLE);
+            holder.edit.setEnabled(false);
+        }
 
         row.setTag(holder);
 
-        holder.button.setText(this.data.get(position));
+        ArrayList<String> arrayList = data.get(position);
 
-        GradientDrawable bgShape = (GradientDrawable)holder.button.getBackground();
+        holder.professor.setText((arrayList.get(0).toString()));
+        holder.sala.setText(arrayList.get(1).toString());
+
+        GradientDrawable bgShape = (GradientDrawable)holder.sala.getBackground();
         bgShape.setColor(Color.parseColor(AppOptions.getBackgroundColor(position)));
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
+        holder.sala.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
                 Intent intent = new Intent(mContext, TelaTestes.class);
 
                 final FireApp fireApp = (FireApp) mContext.getApplicationContext();
-                fireApp.setUserSala(holder.button.getText().toString());
+                fireApp.setUserSala(holder.professor.getText().toString());
 
                 mContext.startActivity(intent);
             }
@@ -93,7 +104,7 @@ public class GridSalasAdapter extends ArrayAdapter<String[]>
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-                        databaseReference.child(holder.button.getText().toString()).removeValue();
+                        databaseReference.child(holder.sala.getText().toString()).removeValue();
                     }
                 });
                 builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -108,14 +119,27 @@ public class GridSalasAdapter extends ArrayAdapter<String[]>
             }
         });
 
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                FireApp fireApp = (FireApp) mContext.getApplicationContext();
+                fireApp.setUserSala(holder.sala.getText().toString());
+
+                Intent intent = new Intent(mContext, TelaAlunos.class);
+                mContext.startActivity(intent);
+            }
+        });
+
         return row;
     }
 
     public static class ViewHolder
     {
         Button delete;
-        Button button;
-        TextView textView;
+        Button edit;
+        Button sala;
+        TextView professor;
     }
 
     public int getCount() {
