@@ -14,6 +14,7 @@ public class FireApp extends Application
     private String userKey;
     private String userName;
     private String userSala;
+    private String userProfessor;
     private String userTurma;
     private Integer admin;
     private Integer professor;
@@ -79,6 +80,14 @@ public class FireApp extends Application
 
     public void setUserTurma(String userTurma) {
         this.userTurma = userTurma;
+    }
+
+    public String getUserProfessor() {
+        return userProfessor;
+    }
+
+    public void setUserProfessor(String userProfessor) {
+        this.userProfessor = userProfessor;
     }
 }
 

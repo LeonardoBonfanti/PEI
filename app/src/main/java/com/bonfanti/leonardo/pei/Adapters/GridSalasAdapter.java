@@ -125,6 +125,7 @@ public class GridSalasAdapter extends ArrayAdapter<String[]>
             {
                 FireApp fireApp = (FireApp) mContext.getApplicationContext();
                 fireApp.setUserSala(holder.sala.getText().toString());
+                fireApp.setUserProfessor(holder.professor.getText().toString());
 
                 Intent intent = new Intent(mContext, TelaAlunos.class);
                 mContext.startActivity(intent);

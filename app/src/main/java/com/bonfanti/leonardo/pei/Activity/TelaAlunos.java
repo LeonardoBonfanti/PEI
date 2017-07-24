@@ -153,7 +153,7 @@ public class TelaAlunos extends AppCompatActivity
         alunos = new ArrayList<>();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("CadastroAlunos")
-                .child(fireApp.getUserName()).child(fireApp.getUserSala());
+                    .child(fireApp.getUserProfessor()).child(fireApp.getUserSala());
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
